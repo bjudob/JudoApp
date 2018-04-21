@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "553966282213",
+    "firebase_url": "https://judoapp4.firebaseio.com",
+    "project_id": "judoapp4",
+    "storage_bucket": "judoapp4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553966282213:android:8b3527e772fb36f6",
+        "android_client_info": {
+          "package_name": "com.example.botond.judoapp_4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553966282213-l9cqhv23cm3aj2rvca980j29la7jg1mc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.botond.judoapp_4",
+            "certificate_hash": "63a44f233422816bc8d8e69439c12b904b708ece"
+          }
+        },
+        {
+          "client_id": "553966282213-kp6g9stgqn49gtui9plsjgbpn7hc3rmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVf0d_iXa68t2H2iii4oa-maATcLRZl68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553966282213-kp6g9stgqn49gtui9plsjgbpn7hc3rmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
