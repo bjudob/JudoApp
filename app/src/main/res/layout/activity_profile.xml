@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context="com.example.botond.judoapp_4.ProfileActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#af1ea7" />
 
     <TextView
         android:id="@+id/textView"
@@ -48,5 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
+
+    <TextView
+        android:text="Verified"
+        android:id="@+id/textViewVerifiedEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -7,12 +7,18 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,8 +35,10 @@ import java.io.IOException;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int CHOOSE_IMAGE = 101;
+
+    TextView textViewEmailVerified;
     ImageView imageView;
-    EditText editText;
+    EditText editTextUsername;
     String profileImageUrl;
 
     ProgressBar progressBar;
@@ -45,9 +53,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         mAuth=FirebaseAuth.getInstance();
 
-        imageView=findViewById(R.id.imageViewCamera);
-        editText=findViewById(R.id.editTextCamera);
-        progressBar=findViewById(R.id.progressbarProfileImage);
+        imageView=(ImageView) findViewById(R.id.imageViewCamera);
+        editTextUsername =(EditText) findViewById(R.id.editTextCamera);
+        progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
+        textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarProfile);
+
+        setSupportActionBar(toolbar);
 
         loadUserInfo();
 
@@ -77,6 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LogInActivity.class);
             startActivity(intent);
         }
+
     }
 
     @Override
@@ -101,20 +114,78 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.profile_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+
+                Intent intent = new Intent(this, LogInActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
+    }
 
     private void loadUserInfo(){
-        FirebaseUser user=mAuth.getCurrentUser();
+        progressBar.setVisibility(View.VISIBLE);
+        final FirebaseUser user=mAuth.getCurrentUser();
 
-        String photoUrl=user.getPhotoUrl().toString();
-        String displayName=user.getDisplayName();
+        if(user!=null) {
+            if(user.getPhotoUrl()!=null){
+                String photoUrl = user.getPhotoUrl().toString();
+                Glide.with(this)
+                        .load(photoUrl)
+                        .into(imageView);
+            }
+
+            if(user.getDisplayName()!=null) {
+                String displayName = user.getDisplayName();
+                editTextUsername.setText(displayName);
+            }
+
+            if(user.isEmailVerified()){
+                textViewEmailVerified.setText("Email verified!");
+            }
+            else{
+                textViewEmailVerified.setText("Email not verified! (Click to Verify)");
+
+                textViewEmailVerified.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(ProfileActivity.this, "Verification email sent!",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+
+        progressBar.setVisibility(View.GONE);
     }
 
     private void saveUserInfo(){
-        String displayName=editText.getText().toString();
+        String displayName= editTextUsername.getText().toString();
 
         if(displayName.isEmpty()){
-            editText.setError("Name required");
-            editText.requestFocus();
+            editTextUsername.setError("Name required");
+            editTextUsername.requestFocus();
             return;
         }
 
