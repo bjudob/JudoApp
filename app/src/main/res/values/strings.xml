@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">JudoApp_4</string>
+    <string name="app_name">JudoApp</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

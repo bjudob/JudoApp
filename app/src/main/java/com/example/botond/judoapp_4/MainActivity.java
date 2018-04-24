@@ -1,11 +1,17 @@
 package com.example.botond.judoapp_4;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,35 +21,66 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    VideoView videoView;
+    Button loginButton, signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
+        loginButton = findViewById(R.id.buttonLoginMain);
+        signupButton = findViewById(R.id.buttonSignup);
 
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logInButtonClick(view);
+            }
+        });
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUpButtonClick(view);
+            }
+        });
+
+        setUpBackgroundVideo();
     }
 
-    private void testRegister(){
-        mAuth.createUserWithEmailAndPassword("konczbotondvagyok@gmail.com", "32tr56prs")
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(MainActivity.this, "Authentication succed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-                        // ...
-                    }
-                });
+        setUpBackgroundVideo();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(mAuth.getCurrentUser()!=null){
+            finish();
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void setUpBackgroundVideo(){
+        videoView=(VideoView)findViewById(R.id.videoView2);
+        Uri uri= Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.background_ippon);
+
+        videoView.setVideoURI(uri);
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+            }
+        });
     }
 
     public void logInButtonClick(View view){
