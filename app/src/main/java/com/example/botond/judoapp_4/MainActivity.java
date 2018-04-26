@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     VideoView videoView;
-    Button loginButton, signupButton;
+    Button loginButton, signupButton, facebookButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.buttonLoginMain);
         signupButton = findViewById(R.id.buttonSignup);
+        facebookButton = findViewById(R.id.buttonFacebookLogin);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signUpButtonClick(view);
+            }
+        });
+        facebookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                facebookButtonClick(view);
             }
         });
 
@@ -94,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
     public void signUpButtonClick(View view){
 
         Intent intent = new Intent(this, SignUpActivity.class);
+
+        startActivity(intent);
+
+    }
+
+    public void facebookButtonClick(View view){
+
+        Intent intent = new Intent(this, LearnActivity.class);
 
         startActivity(intent);
 

@@ -1,17 +1,16 @@
 package com.example.botond.judoapp_4;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.os.Bundle;
+import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -30,10 +29,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.IOException;
 
-public class ProfileActivity extends BaseActivity {
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ProfileFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ProfileFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class ProfileFragment extends Fragment {
     private static final int CHOOSE_IMAGE = 101;
 
     TextView textViewEmailVerified;
@@ -46,20 +51,40 @@ public class ProfileActivity extends BaseActivity {
     FirebaseAuth mAuth;
     Uri uriProfileImage;
 
+    private OnFragmentInteractionListener mListener;
+
+    public ProfileFragment() {
+        // Required empty public constructor
+    }
+
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
+
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_profile);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.fragment_profile, container, false);
 
         mAuth=FirebaseAuth.getInstance();
 
-        imageView=(ImageView) findViewById(R.id.imageViewCamera);
-        editTextUsername =(EditText) findViewById(R.id.editTextCamera);
-        progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
-        textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarProfile);
+        imageView=(ImageView) view.findViewById(R.id.imageViewCamera);
+        editTextUsername =(EditText) view.findViewById(R.id.editTextCamera);
+        progressBar=(ProgressBar) view.findViewById(R.id.progressbarProfileImage);
+        textViewEmailVerified=(TextView) view.findViewById(R.id.textViewVerifiedEmail);
+        Toolbar toolbar=(Toolbar) view.findViewById(R.id.toolbarProfile);
 
-        setSupportActionBar(toolbar);
+        AppCompatActivity aca=((AppCompatActivity)getActivity());
+        aca.setSupportActionBar(toolbar);
 
         loadUserInfo();
 
@@ -70,83 +95,40 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInfo();
             }
         });
 
-
+        return view;
     }
 
     @Override
-    protected void onStart(){
-        super.onStart();
-
-        if(mAuth.getCurrentUser()==null){
-            finish();
-            Intent intent = new Intent(this, LogInActivity.class);
-            startActivity(intent);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            //throw new RuntimeException(context.toString()
+                    //+ " must implement OnFragmentInteractionListener");
+            Toast.makeText(context, "Profile Fragment attached",Toast.LENGTH_SHORT);
         }
 
+
     }
 
     @Override
-    int getContentViewId() {
-        return R.layout.activity_profile;
-    }
-
-    @Override
-    int getNavigationMenuItemId() {
-        return R.id.navigation_profile;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==CHOOSE_IMAGE && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-            uriProfileImage=data.getData();
-
-            try {
-                Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uriProfileImage);
-                imageView.setImageBitmap(bitmap);
-
-                uploadImageToFirebaseStorae();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-        }
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.profile_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.menuLogout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-        return true;
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
     private void loadUserInfo(){
@@ -178,7 +160,7 @@ public class ProfileActivity extends BaseActivity {
                         user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(ProfileActivity.this, "Verification email sent!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Verification email sent!",Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -210,11 +192,11 @@ public class ProfileActivity extends BaseActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(ProfileActivity.this,"Profile Updated",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"Profile Updated",Toast.LENGTH_SHORT).show();
 
                     }
                     else{
-                        Toast.makeText(ProfileActivity.this,"Update Failed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"Update Failed",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -233,7 +215,7 @@ public class ProfileActivity extends BaseActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         String refString="profilepics/"+System.currentTimeMillis()+".jpg";
-        final StorageReference profileImageRef=FirebaseStorage.getInstance().getReference(refString);
+        final StorageReference profileImageRef= FirebaseStorage.getInstance().getReference(refString);
 
         if(uriProfileImage!=null){
             profileImageRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -249,7 +231,7 @@ public class ProfileActivity extends BaseActivity {
                         public void onFailure(@NonNull Exception e) {
                             progressBar.setVisibility(View.GONE);
 
-                            Toast.makeText(ProfileActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
         }
