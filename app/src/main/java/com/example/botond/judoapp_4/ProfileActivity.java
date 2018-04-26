@@ -167,7 +167,7 @@ public class ProfileActivity extends BaseActivity {
             }
 
             if(user.isEmailVerified()){
-                textViewEmailVerified.setText("Email verified!");
+
             }
             else{
                 textViewEmailVerified.setText("Email not verified! (Click to Verify)");
@@ -201,23 +201,40 @@ public class ProfileActivity extends BaseActivity {
 
         FirebaseUser user=mAuth.getCurrentUser();
 
-        if(user!=null && profileImageUrl!=null){
-            UserProfileChangeRequest profileChangeRequest=new UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayName)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
-                    .build();
-            user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(ProfileActivity.this,"Profile Updated",Toast.LENGTH_SHORT).show();
+        if(user!=null){
+            if(profileImageUrl!=null) {
+                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .setPhotoUri(Uri.parse(profileImageUrl))
+                        .build();
+                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
 
+                        } else {
+                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else{
-                        Toast.makeText(ProfileActivity.this,"Update Failed",Toast.LENGTH_SHORT).show();
+                });
+            }
+            else{
+                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .build();
+                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 

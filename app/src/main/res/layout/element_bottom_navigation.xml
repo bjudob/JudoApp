@@ -7,4 +7,6 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark"
     app:menu="@menu/navigation"
+    app:itemIconTint="@drawable/navigation_selector"
+    app:itemTextColor="@drawable/navigation_selector"
     />
