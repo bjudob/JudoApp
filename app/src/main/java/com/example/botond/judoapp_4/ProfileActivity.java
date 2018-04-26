@@ -8,10 +8,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.text.method.KeyListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -40,6 +43,7 @@ public class ProfileActivity extends BaseActivity {
     ImageView imageView;
     EditText editTextUsername;
     String profileImageUrl;
+    Button buttonEdit, buttonSaveProfile;
 
     ProgressBar progressBar;
 
@@ -57,6 +61,8 @@ public class ProfileActivity extends BaseActivity {
         editTextUsername =(EditText) findViewById(R.id.editTextCamera);
         progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
+        buttonEdit=(Button) findViewById(R.id.buttonEditUsername);
+        buttonSaveProfile=(Button) findViewById(R.id.buttonSave);
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarProfile);
 
         setSupportActionBar(toolbar);
@@ -70,13 +76,21 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+        buttonSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInfo();
             }
         });
 
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //editTextUsername.setInputType(InputType.TYPE_CLASS_TEXT);
+                editTextUsername.setEnabled(true);
+                buttonSaveProfile.setVisibility(View.VISIBLE);
+            }
+        });
 
     }
 
@@ -114,6 +128,7 @@ public class ProfileActivity extends BaseActivity {
                 imageView.setImageBitmap(bitmap);
 
                 uploadImageToFirebaseStorae();
+                buttonSaveProfile.setVisibility(View.VISIBLE);
 
             } catch (IOException e) {
                 e.printStackTrace();

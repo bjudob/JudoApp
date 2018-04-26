@@ -29,16 +29,18 @@
 
     <EditText
         android:id="@+id/editTextCamera"
-        android:editable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="20dp"
-        android:textSize="15sp"
+        android:layout_marginStart="8dp"
+        android:enabled="false"
+        android:textColor="@drawable/edittext_selector"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewUsername"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditUsername"
         app:layout_constraintStart_toEndOf="@+id/textViewUsername"
         app:layout_constraintTop_toTopOf="@+id/textViewUsername" />
+
 
     <Button
         android:id="@+id/buttonSave"
@@ -48,6 +50,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Save Profile"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/textViewVerifiedEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -112,6 +115,16 @@
         android:layout_height="fill_parent"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/buttonEditUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextCamera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextCamera" />
 
 
 </android.support.constraint.ConstraintLayout>

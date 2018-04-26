@@ -24,7 +24,8 @@
             android:name=".BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".LearnActivity" />
-        <activity android:name=".ScoreboardActivity"></activity>
+        <activity android:name=".ScoreboardActivity" />
+        <activity android:name=".StopwatchActivity"></activity>
     </application>
 
 </manifest>
