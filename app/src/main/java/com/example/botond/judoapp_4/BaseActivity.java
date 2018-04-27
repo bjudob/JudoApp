@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if (itemId == R.id.navigation_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
             } else if (itemId == R.id.navigation_scoreboard) {
-                startActivity(new Intent(this, StopwatchActivity.class));
+                startActivity(new Intent(this, ScoreboardActivity.class));
             } else if (itemId == R.id.navigation_learn) {
                 startActivity(new Intent(this, LearnActivity.class));
             }
