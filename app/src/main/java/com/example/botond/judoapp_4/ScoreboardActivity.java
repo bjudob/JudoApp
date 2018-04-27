@@ -12,37 +12,13 @@ public class ScoreboardActivity extends BaseActivity {
     private Chronometer chronometer;
     private boolean running=false;
     private long pauseOffset=0;
-    Button buttonStart, buttonPause, buttonReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         chronometer=(Chronometer) findViewById(R.id.chronometer);
-        buttonStart=(Button) findViewById(R.id.buttonStart);
-        buttonPause=(Button) findViewById(R.id.buttonPause);
-        buttonReset=(Button) findViewById(R.id.buttonReset);
 
-        buttonStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonStartClick(view);
-            }
-        });
-
-        buttonPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonPauseClick(view);
-            }
-        });
-
-        buttonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonResetClick(view);
-            }
-        });
 
     }
 
