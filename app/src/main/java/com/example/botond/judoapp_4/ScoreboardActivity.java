@@ -12,6 +12,8 @@ import com.example.botond.judoapp_4.scores.PlayerScore2018;
 
 public class ScoreboardActivity extends BaseActivity {
 
+    private static final int CONTEST_TIME = 4*60*1000;
+
     private Chronometer chronometer;
     private boolean running=false;
     private long pauseOffset=0;
@@ -40,6 +42,8 @@ public class ScoreboardActivity extends BaseActivity {
         setShidoImage(playerWhite, imageViewShidoWhite);
         setShidoImage(playerBlue, imageViewShidoBlue);
 
+        chronometer.setCountDown(true);
+        chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
     }
 
     private void setListeners(){
@@ -163,7 +167,7 @@ public class ScoreboardActivity extends BaseActivity {
 
     private void startChrono(View view){
         if(!running){
-            chronometer.setBase(SystemClock.elapsedRealtime()-pauseOffset);
+            chronometer.setBase(SystemClock.elapsedRealtime()-pauseOffset+CONTEST_TIME);
             chronometer.start();
             chronometer.setTextColor(getResources().getColor(R.color.colorGreen));
             running=true;
@@ -180,7 +184,7 @@ public class ScoreboardActivity extends BaseActivity {
     }
 
     private void resetChrono(View view){
-        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
         pauseOffset=0;
     }
 }
