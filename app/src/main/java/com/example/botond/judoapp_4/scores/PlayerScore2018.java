@@ -1,6 +1,7 @@
 package com.example.botond.judoapp_4.scores;
 
 public class PlayerScore2018 implements PlayerScore{
+    private static final int MAX_SHIDO = 3;
     private Integer shido;
     private Integer wazari;
     private Boolean ippon;
@@ -26,6 +27,9 @@ public class PlayerScore2018 implements PlayerScore{
         if(shido<0){
             shido=0;
         }
+        if(shido>MAX_SHIDO){
+            shido=MAX_SHIDO;
+        }
     }
 
     @Override
@@ -42,6 +46,7 @@ public class PlayerScore2018 implements PlayerScore{
         }
         if(wazari>=2){
             ippon=true;
+            wazari=2;
         }
     }
 
@@ -79,4 +84,11 @@ public class PlayerScore2018 implements PlayerScore{
     public Boolean getIppon() {
         return ippon;
     }
+
+    @Override
+    public Boolean isHansokumake() {
+        return shido>=3;
+    }
+
+
 }

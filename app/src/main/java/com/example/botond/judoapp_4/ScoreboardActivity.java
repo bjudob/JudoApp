@@ -36,6 +36,10 @@ public class ScoreboardActivity extends BaseActivity {
 
         setListeners();
 
+        //playerWhite.addShido(1);
+        setShidoImage(playerWhite, imageViewShidoWhite);
+        setShidoImage(playerBlue, imageViewShidoBlue);
+
     }
 
     private void setListeners(){
@@ -85,20 +89,77 @@ public class ScoreboardActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 playerWhite.addShido(1);
+                setShidoImage(playerWhite, imageViewShidoWhite);
+            }
+        });
 
-
+        imageViewShidoWhite.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                playerWhite.addShido(-1);
+                setShidoImage(playerWhite, imageViewShidoWhite);
+                return true;
             }
         });
 
         imageViewShidoBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playerWhite.addShido(-1);
+                playerBlue.addShido(1);
+                setShidoImage(playerBlue, imageViewShidoBlue);
+            }
+        });
+
+        imageViewShidoBlue.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                playerBlue.addShido(-1);
+                setShidoImage(playerBlue, imageViewShidoBlue);
+                return true;
             }
         });
     }
 
 
+
+    private void addWazari(int nr, PlayerScore player, TextView textView){
+        player.addWazari(nr);
+        String wazariText=player.getWazari().toString();
+        textView.setText(wazariText);
+    }
+
+    private void setShidoImage(PlayerScore player, ImageView imageView){
+        if(player.isHansokumake()){
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.red_card));
+        }
+        else {
+            switch (player.getShido()) {
+                case 0:
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_0));
+                    break;
+                case 1:
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_1));
+                    break;
+                case 2:
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_2));
+                    break;
+                case 3:
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_3));
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_scoreboard;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.navigation_scoreboard;
+    }
 
     private void startChrono(View view){
         if(!running){
@@ -121,22 +182,5 @@ public class ScoreboardActivity extends BaseActivity {
     private void resetChrono(View view){
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset=0;
-    }
-
-    private void addWazari(int nr, PlayerScore player, TextView textView){
-        player.addWazari(nr);
-        String wazariText=player.getWazari().toString();
-        textView.setText(wazariText);
-    }
-
-
-    @Override
-    int getContentViewId() {
-        return R.layout.activity_scoreboard;
-    }
-
-    @Override
-    int getNavigationMenuItemId() {
-        return R.id.navigation_scoreboard;
     }
 }

@@ -177,6 +177,34 @@
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
     <TextView
+        android:id="@+id/textViewSWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="S"
+        android:textColor="@color/colorBlack"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWWhite"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewShidoWhite"
+        app:layout_constraintStart_toStartOf="@+id/imageViewShidoWhite"
+        app:layout_constraintTop_toTopOf="@+id/textViewWWhite" />
+
+    <TextView
+        android:id="@+id/textViewSBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="S"
+        android:textColor="@color/colorWhite"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWBlue"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewShidoBlue"
+        app:layout_constraintStart_toStartOf="@+id/imageViewShidoBlue"
+        app:layout_constraintTop_toTopOf="@+id/textViewWBlue" />
+
+    <TextView
         android:id="@+id/textViewWBlue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -194,10 +222,11 @@
         android:layout_width="50dp"
         android:layout_height="70dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:srcCompat="@drawable/yellow_card" />
+        app:srcCompat="@drawable/yellow_card_1" />
 
     <ImageView
         android:id="@+id/imageViewShidoBlue"
@@ -208,7 +237,7 @@
         app:layout_constraintEnd_toEndOf="@+id/white_background"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.462"
-        app:srcCompat="@drawable/yellow_card" />
+        app:srcCompat="@drawable/yellow_card_1" />
 
 
 </android.support.constraint.ConstraintLayout>

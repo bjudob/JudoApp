@@ -24,6 +24,7 @@ public interface PlayerScore {
 
     public Boolean getIppon();
 
+    public Boolean isHansokumake();
 
 
 }
