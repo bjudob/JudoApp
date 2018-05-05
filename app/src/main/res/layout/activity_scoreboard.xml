@@ -140,7 +140,7 @@
         android:textSize="80sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/imageViewShidoBlue"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toEndOf="@+id/textViewIpponBlue"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
@@ -155,8 +155,34 @@
         android:textSize="80sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/imageViewShidoWhite"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toEndOf="@+id/textViewIpponWhite"
         app:layout_constraintTop_toTopOf="@+id/textViewWWhite" />
+
+    <TextView
+        android:id="@+id/textViewIpponWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        android:textColor="@color/colorBlack"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWazariWhite"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/textViewWazariWhite"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <TextView
+        android:id="@+id/textViewIpponBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="0"
+        android:textColor="@color/colorWhite"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWazariBlue"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/textViewWazariBlue" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
@@ -175,6 +201,33 @@
         app:layout_constraintEnd_toEndOf="@+id/textViewWazariWhite"
         app:layout_constraintStart_toStartOf="@+id/textViewWazariWhite"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/textViewIWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="I"
+        android:textColor="@color/colorBlack"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewIpponWhite"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/textViewIBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="I"
+        android:textColor="@color/colorWhite"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWBlue"
+        app:layout_constraintEnd_toEndOf="@+id/textViewIpponBlue"
+        app:layout_constraintStart_toStartOf="@+id/textViewIpponBlue"
+        app:layout_constraintTop_toTopOf="@+id/textViewWBlue" />
+
 
     <TextView
         android:id="@+id/textViewSWhite"
