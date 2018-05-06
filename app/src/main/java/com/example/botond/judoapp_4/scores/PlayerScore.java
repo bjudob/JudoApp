@@ -26,5 +26,10 @@ public interface PlayerScore {
 
     public Boolean isHansokumake();
 
+    public PlayerScore getOpponent();
+
+    public void setShido(int shido);
+
+    public void setOpponent(PlayerScore opponent);
 
 }

@@ -5,6 +5,7 @@ public class PlayerScore2018 implements PlayerScore{
     private Integer shido;
     private Integer wazari;
     private Boolean ippon;
+    private PlayerScore opponent;
 
     //no args constructor
     public PlayerScore2018(){
@@ -23,11 +24,19 @@ public class PlayerScore2018 implements PlayerScore{
 
     @Override
     public void addShido(int nr) {
-        shido+=nr;
+
+        if(nr<0 && shido>=3){
+            opponent.addIppon(-1);
+        }
+        else{
+            shido+=nr;
+        }
+
         if(shido<0){
             shido=0;
         }
-        if(shido>MAX_SHIDO){
+        if(shido>=MAX_SHIDO){
+            opponent.addIppon(1);
             shido=MAX_SHIDO;
         }
     }
@@ -40,7 +49,12 @@ public class PlayerScore2018 implements PlayerScore{
 
     @Override
     public void addWazari(int nr) {
+        if(nr<0 && wazari>=2){
+            ippon=false;
+        }
+
         wazari+=nr;
+
         if(wazari<0){
             wazari=0;
         }
@@ -57,6 +71,12 @@ public class PlayerScore2018 implements PlayerScore{
         }
         else {
             ippon=false;
+            if(wazari>1){
+                wazari=1;
+            }
+            if(opponent.getShido()>=MAX_SHIDO){
+                opponent.setShido(MAX_SHIDO-1);
+            }
         }
     }
 
@@ -90,5 +110,18 @@ public class PlayerScore2018 implements PlayerScore{
         return shido>=3;
     }
 
+    @Override
+    public PlayerScore getOpponent() {
+        return opponent;
+    }
 
+    @Override
+    public void setShido(int shido) {
+        this.shido=shido;
+    }
+
+    @Override
+    public void setOpponent(PlayerScore opponent) {
+        this.opponent = opponent;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.botond.judoapp_4;
 import android.os.SystemClock;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,8 +21,17 @@ public class ScoreboardActivity extends BaseActivity {
     private boolean running=false;
     private long pauseOffset=0;
 
+    private Chronometer chronometerOsaekomi;
+    private boolean runningOsaekomi=false;
+    private long pauseOffsetOsaekomi=0;
+
     private ScoreDisplay scoreDisplayWhite, scoreDisplayBlue;
     private PlayerScore playerWhite, playerBlue;
+
+    private Button buttonOsaekomi, buttonOsaekomiWhite, buttonOsaekomiBlue;
+
+    private PlayerScore playerOsaekomi;
+    private ScoreDisplay scoreDisplayOsaekomi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,10 @@ public class ScoreboardActivity extends BaseActivity {
         scoreDisplayBlue=new ScoreDisplay();
 
         chronometer=(Chronometer) findViewById(R.id.chronometer);
+        chronometerOsaekomi=(Chronometer) findViewById(R.id.chronometerOsaekomi);
+        buttonOsaekomi=(Button)findViewById(R.id.buttonOsaekomi);
+        buttonOsaekomiWhite=(Button)findViewById(R.id.buttonOsaekomiWhite);
+        buttonOsaekomiBlue=(Button)findViewById(R.id.buttonOsaekomiBlue);
         scoreDisplayWhite.setWazari((TextView) findViewById(R.id.textViewWazariWhite));
         scoreDisplayBlue.setWazari((TextView) findViewById(R.id.textViewWazariBlue));
         scoreDisplayWhite.setIppon((TextView) findViewById(R.id.textViewIpponWhite));
@@ -38,10 +52,11 @@ public class ScoreboardActivity extends BaseActivity {
         scoreDisplayWhite.setShido((ImageView) findViewById(R.id.imageViewShidoWhite));
         scoreDisplayBlue.setShido((ImageView) findViewById(R.id.imageViewShidoBlue));
 
-
-
         playerWhite=new PlayerScore2018();
         playerBlue=new PlayerScore2018();
+
+        playerWhite.setOpponent(playerBlue);
+        playerBlue.setOpponent(playerWhite);
 
         setListeners();
 
@@ -52,29 +67,22 @@ public class ScoreboardActivity extends BaseActivity {
         chronometer.setCountDown(true);
         chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
         pauseOffset=SystemClock.elapsedRealtime()-chronometer.getBase();
+
+        chronometerOsaekomi.setBase(SystemClock.elapsedRealtime());
+        pauseOffsetOsaekomi=SystemClock.elapsedRealtime()-chronometerOsaekomi.getBase();
     }
 
+    //setting listeners for the UI
     private void setListeners(){
 
+        setListenersButton();
         setListenersWazari();
         setListenersIppon();
         setListenersShido();
-
-        chronometer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!running){
-                    startChrono(view);
-                }
-                else{
-                    pauseChrono(view);
-                }
-            }
-        });
-
-
+        setListenersChrono();
     }
 
+    //setting listeners for the WAZARI textViews
     private void setListenersWazari(){
         scoreDisplayWhite.getWazari().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +115,20 @@ public class ScoreboardActivity extends BaseActivity {
         });
     }
 
+    //setting listeners for the IPPON textViews
     private void setListenersIppon(){
         scoreDisplayWhite.getIppon().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addIppon(1, playerBlue, scoreDisplayBlue);
+                addIppon(1, playerWhite, scoreDisplayWhite);
+            }
+        });
+
+        scoreDisplayWhite.getIppon().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                addIppon(-1, playerWhite, scoreDisplayWhite);
+                return true;
             }
         });
 
@@ -122,22 +139,29 @@ public class ScoreboardActivity extends BaseActivity {
             }
         });
 
+        scoreDisplayBlue.getIppon().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                addIppon(-1, playerBlue, scoreDisplayBlue);
+                return true;
+            }
+        });
+
     }
 
+    //setting listeners for the SHIDO imageViews
     private void setListenersShido(){
         scoreDisplayWhite.getShido().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playerWhite.addShido(1);
-                setShidoImage(playerWhite, scoreDisplayWhite);
+                addShido(1, playerWhite, scoreDisplayWhite);
             }
         });
 
         scoreDisplayWhite.getShido().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                playerWhite.addShido(-1);
-                setShidoImage(playerWhite, scoreDisplayWhite);
+                addShido(-1, playerWhite, scoreDisplayWhite);
                 return true;
             }
         });
@@ -145,36 +169,112 @@ public class ScoreboardActivity extends BaseActivity {
         scoreDisplayBlue.getShido().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playerBlue.addShido(1);
-                setShidoImage(playerBlue, scoreDisplayBlue);
+                addShido(1, playerBlue, scoreDisplayBlue);
             }
         });
 
         scoreDisplayBlue.getShido().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                playerBlue.addShido(-1);
-                setShidoImage(playerBlue, scoreDisplayBlue);
+                addShido(-1, playerBlue, scoreDisplayBlue);
                 return true;
             }
         });
     }
 
+    //setting listeners for the OSAEKOMI buttons
+    private void setListenersButton(){
+        buttonOsaekomi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonOsaekomiBlue.setVisibility(View.VISIBLE);
+                buttonOsaekomiWhite.setVisibility(View.VISIBLE);
+                chronometerOsaekomi.setVisibility(View.VISIBLE);
+                buttonOsaekomi.setVisibility(View.GONE);
+
+                startChronoOsaekomi(view);
+            }
+        });
+
+        buttonOsaekomiWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chronometerOsaekomi.setTextColor(getColor(R.color.colorWhite));
+
+                playerOsaekomi=playerWhite;
+                scoreDisplayOsaekomi=scoreDisplayWhite;
+
+                buttonOsaekomiWhite.setVisibility(View.GONE);
+                buttonOsaekomiBlue.setVisibility(View.GONE);
+            }
+        });
+
+        buttonOsaekomiBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chronometerOsaekomi.setTextColor(getColor(R.color.colorBlue));
+
+                playerOsaekomi=playerBlue;
+                scoreDisplayOsaekomi=scoreDisplayBlue;
+
+                buttonOsaekomiWhite.setVisibility(View.GONE);
+                buttonOsaekomiBlue.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    //setting listeners for the CHRONOMETERS
+    private void setListenersChrono(){
+        chronometer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!running){
+                    startChrono(view);
+                }
+                else{
+                    pauseChrono(view);
+                }
+            }
+        });
+
+        chronometerOsaekomi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!runningOsaekomi){
+                    startChronoOsaekomi(view);
+                }
+                else{
+                    pauseChronoOsaekomi(view);
+                }
+            }
+        });
+    }
 
     private void addWazari(int nr, PlayerScore player, ScoreDisplay scoreDisplay){
         player.addWazari(nr);
-        String wazariText=player.getWazari().toString();
-        scoreDisplay.getWazari().setText(wazariText);
-        //checkIppon(player, textView);
+        setScores();
     }
 
     private void addIppon(int nr, PlayerScore player, ScoreDisplay scoreDisplay){
         player.addIppon(nr);
-
+        setScores();
     }
 
-    private void checkIppon(PlayerScore player, TextView textView){
-        String ipponText;
+    private void addShido(int nr, PlayerScore player, ScoreDisplay scoreDisplay){
+        player.addShido(nr);
+        setScores();
+    }
+
+    private void setScores(){
+        setScores(playerWhite, scoreDisplayWhite);
+        setScores(playerBlue, scoreDisplayBlue);
+    }
+
+    private void setScores(PlayerScore player, ScoreDisplay scoreDisplay){
+        String wazariText, ipponText;
+
+        wazariText=player.getWazari().toString();
+
         if(player.getIppon()){
             ipponText="1";
         }
@@ -182,7 +282,9 @@ public class ScoreboardActivity extends BaseActivity {
             ipponText="0";
         }
 
-        textView.setText(ipponText);
+        scoreDisplay.getWazari().setText(wazariText);
+        scoreDisplay.getIppon().setText(ipponText);
+        setShidoImage(player,scoreDisplay);
     }
 
     private void setShidoImage(PlayerScore player, ScoreDisplay scoreDisplay){
@@ -194,16 +296,16 @@ public class ScoreboardActivity extends BaseActivity {
         else {
             switch (player.getShido()) {
                 case 0:
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_0));
+                    imageView.setImageDrawable(getDrawable(R.drawable.yellow_card_0));
                     break;
                 case 1:
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_1));
+                    imageView.setImageDrawable(getDrawable(R.drawable.yellow_card_1));
                     break;
                 case 2:
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_2));
+                    imageView.setImageDrawable(getDrawable(R.drawable.yellow_card_2));
                     break;
                 case 3:
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.yellow_card_3));
+                    imageView.setImageDrawable(getDrawable(R.drawable.yellow_card_3));
                     break;
             }
         }
@@ -242,4 +344,58 @@ public class ScoreboardActivity extends BaseActivity {
         chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
         pauseOffset=0;
     }
+
+    private void startChronoOsaekomi(View view){
+        if(!runningOsaekomi){
+            chronometerOsaekomi.setBase(SystemClock.elapsedRealtime()-pauseOffsetOsaekomi);
+            chronometerOsaekomi.start();
+            chronometerOsaekomi.setTextColor(getColor(R.color.colorGreen));
+            runningOsaekomi=true;
+        }
+    }
+
+    private void pauseChronoOsaekomi(View view){
+        if(runningOsaekomi){
+            chronometerOsaekomi.stop();
+            pauseOffsetOsaekomi=SystemClock.elapsedRealtime()-chronometerOsaekomi.getBase();
+            chronometerOsaekomi.setTextColor(getColor(R.color.colorRed));
+            runningOsaekomi=false;
+
+            addScoreOsaekomi(pauseOffsetOsaekomi);
+
+            chronometerOsaekomi.setVisibility(View.GONE);
+            buttonOsaekomi.setVisibility(View.VISIBLE);
+
+            resetChronoOsaekomi(view);
+        }
+    }
+
+    //adds score into scoreboard based on osaekomi time in milliseconds
+    private void addScoreOsaekomi(long time){
+        long seconds=time/1000;
+
+        if(playerOsaekomi!=null && scoreDisplayOsaekomi!=null) {
+            if (seconds < 10) {
+
+            } else if (seconds < 20) {
+                addWazari(1, playerOsaekomi, scoreDisplayOsaekomi);
+            } else if (seconds >= 20) {
+                addIppon(1, playerOsaekomi, scoreDisplayOsaekomi);
+            }
+            playerOsaekomi=null;
+            scoreDisplayOsaekomi=null;
+        }
+        else{
+            buttonOsaekomiWhite.setVisibility(View.GONE);
+            buttonOsaekomiBlue.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void resetChronoOsaekomi(View view){
+        chronometerOsaekomi.setBase(SystemClock.elapsedRealtime());
+        pauseOffsetOsaekomi=0;
+    }
 }
+
+

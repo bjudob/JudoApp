@@ -39,16 +39,27 @@
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:textColor="@color/colorRed"
         android:textSize="90sp"
         app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Chronometer
+        android:id="@+id/chronometerOsaekomi"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/colorRed"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <include
         android:id="@+id/includeBottomNav"
@@ -291,6 +302,39 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.462"
         app:srcCompat="@drawable/yellow_card_1" />
+
+    <Button
+        android:id="@+id/buttonOsaekomiWhite"
+        android:visibility="gone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/buttonOsaekomiBlue"
+        android:visibility="gone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonOsaekomiWhite" />
+
+    <Button
+        android:id="@+id/buttonOsaekomi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Osaekomi"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
