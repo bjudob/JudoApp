@@ -1,5 +1,6 @@
 package com.example.botond.judoapp_4;
 
+import android.content.Context;
 import android.os.SystemClock;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.botond.judoapp_4.scores.PlayerScore;
 import com.example.botond.judoapp_4.scores.PlayerScore2018;
@@ -16,6 +18,8 @@ public class ScoreboardActivity extends BaseActivity {
 
     private static final int CONTEST_MINS = 4;
     private static final int CONTEST_TIME = CONTEST_MINS*60*1000;
+
+    private Context context=this;
 
     private Chronometer chronometer;
     private boolean running=false;
@@ -192,7 +196,7 @@ public class ScoreboardActivity extends BaseActivity {
                 chronometerOsaekomi.setVisibility(View.VISIBLE);
                 buttonOsaekomi.setVisibility(View.GONE);
 
-                startChronoOsaekomi(view);
+                startChronoOsaekomi();
             }
         });
 
@@ -229,10 +233,19 @@ public class ScoreboardActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if(!running){
-                    startChrono(view);
+                    startChrono();
                 }
                 else{
-                    pauseChrono(view);
+                    pauseChrono();
+                }
+            }
+        });
+
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                if( chronometer.getText().toString().equalsIgnoreCase("00:00")) {
+                    pauseChrono();
                 }
             }
         });
@@ -241,12 +254,21 @@ public class ScoreboardActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if(!runningOsaekomi){
-                    startChronoOsaekomi(view);
+                    startChronoOsaekomi();
                 }
                 else{
-                    pauseChronoOsaekomi(view);
+                    pauseChronoOsaekomi();
                 }
             }
+        });
+
+        chronometerOsaekomi.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                    @Override
+                    public void onChronometerTick(Chronometer chronometer) {
+                        if( chronometer.getText().toString().equalsIgnoreCase("00:20")) {
+                            pauseChronoOsaekomi();
+                        }
+                    }
         });
     }
 
@@ -322,7 +344,7 @@ public class ScoreboardActivity extends BaseActivity {
         return R.id.navigation_scoreboard;
     }
 
-    private void startChrono(View view){
+    private void startChrono(){
         if(!running){
             chronometer.setBase(SystemClock.elapsedRealtime()-pauseOffset);
             chronometer.start();
@@ -331,7 +353,7 @@ public class ScoreboardActivity extends BaseActivity {
         }
     }
 
-    private void pauseChrono(View view){
+    private void pauseChrono(){
         if(running){
             chronometer.stop();
             pauseOffset=SystemClock.elapsedRealtime()-chronometer.getBase();
@@ -340,12 +362,12 @@ public class ScoreboardActivity extends BaseActivity {
         }
     }
 
-    private void resetChrono(View view){
+    private void resetChrono(){
         chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
         pauseOffset=0;
     }
 
-    private void startChronoOsaekomi(View view){
+    private void startChronoOsaekomi(){
         if(!runningOsaekomi){
             chronometerOsaekomi.setBase(SystemClock.elapsedRealtime()-pauseOffsetOsaekomi);
             chronometerOsaekomi.start();
@@ -354,7 +376,7 @@ public class ScoreboardActivity extends BaseActivity {
         }
     }
 
-    private void pauseChronoOsaekomi(View view){
+    private void pauseChronoOsaekomi(){
         if(runningOsaekomi){
             chronometerOsaekomi.stop();
             pauseOffsetOsaekomi=SystemClock.elapsedRealtime()-chronometerOsaekomi.getBase();
@@ -366,7 +388,7 @@ public class ScoreboardActivity extends BaseActivity {
             chronometerOsaekomi.setVisibility(View.GONE);
             buttonOsaekomi.setVisibility(View.VISIBLE);
 
-            resetChronoOsaekomi(view);
+            resetChronoOsaekomi();
         }
     }
 
@@ -392,7 +414,7 @@ public class ScoreboardActivity extends BaseActivity {
 
     }
 
-    private void resetChronoOsaekomi(View view){
+    private void resetChronoOsaekomi(){
         chronometerOsaekomi.setBase(SystemClock.elapsedRealtime());
         pauseOffsetOsaekomi=0;
     }
