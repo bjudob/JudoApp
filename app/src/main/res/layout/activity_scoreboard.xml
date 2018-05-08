@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ScoreboardActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarProfile"
+    <include
+        android:id="@+id/toolbarInclude"
+        layout="@layout/element_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorBlack"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -44,7 +44,7 @@
         android:layout_marginStart="8dp"
         android:textColor="@color/colorRed"
         android:textSize="90sp"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -58,11 +58,11 @@
         android:layout_marginEnd="8dp"
         android:textColor="@color/colorRed"
         android:textSize="45sp"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <include
-        android:id="@+id/includeBottomNav"
+        android:id="@+id/bottomNavigationInclude"
         layout="@layout/element_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -333,7 +333,7 @@
         android:layout_marginEnd="8dp"
         android:text="Osaekomi"
         android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
         app:layout_constraintEnd_toEndOf="parent" />
 
 

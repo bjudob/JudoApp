@@ -63,7 +63,7 @@ public class ProfileActivity extends BaseActivity {
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
         buttonEdit=(Button) findViewById(R.id.buttonEditUsername);
         buttonSaveProfile=(Button) findViewById(R.id.buttonSave);
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarProfile);
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarInclude);
 
         setSupportActionBar(toolbar);
 

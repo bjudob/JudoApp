@@ -20,7 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         setContentView(getContentViewId());
 
 
-        navigationView = (BottomNavigationView) findViewById(R.id.includeBottomNav);
+        navigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationInclude);
         if(navigationView!=null){
             navigationView.setOnNavigationItemSelectedListener(this);
         }

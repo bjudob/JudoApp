@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".LearnActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarProfile"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:background="@color/colorPrimary"
+    <include
+        android:id="@+id/toolbarInclude"
+        layout="@layout/element_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,16 +27,16 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude" />
 
     <ListView
         android:id="@+id/listViewLectures"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="368dp"
+        android:layout_height="436dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/includeBottomNav"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <include
-        android:id="@+id/includeBottomNav"
+        android:id="@+id/bottomNavigationInclude"
         layout="@layout/element_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
