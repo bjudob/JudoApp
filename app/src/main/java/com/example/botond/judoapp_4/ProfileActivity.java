@@ -63,9 +63,6 @@ public class ProfileActivity extends BaseActivity {
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
         buttonEdit=(Button) findViewById(R.id.buttonEditUsername);
         buttonSaveProfile=(Button) findViewById(R.id.buttonSave);
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarInclude);
-
-        setSupportActionBar(toolbar);
 
         loadUserInfo();
 
@@ -136,16 +133,6 @@ public class ProfileActivity extends BaseActivity {
 
 
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.profile_menu, menu);
-
-        return true;
     }
 
     @Override

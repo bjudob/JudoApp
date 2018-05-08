@@ -6,7 +6,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -25,6 +27,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             navigationView.setOnNavigationItemSelectedListener(this);
         }
 
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarInclude);
+
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -53,6 +58,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             }
             finish();
         }, 0); //300
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.profile_menu, menu);
+
         return true;
     }
 
