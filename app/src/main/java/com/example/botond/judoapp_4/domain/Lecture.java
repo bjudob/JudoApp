@@ -1,5 +1,7 @@
 package com.example.botond.judoapp_4.domain;
 
+import java.util.Objects;
+
 public class Lecture {
     private String id;
     private String title;
@@ -63,5 +65,19 @@ public class Lecture {
     @Override
     public String toString(){
         return title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lecture lecture = (Lecture) o;
+        return Objects.equals(id, lecture.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

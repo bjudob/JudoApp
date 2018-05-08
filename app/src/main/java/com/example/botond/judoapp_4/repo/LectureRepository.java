@@ -58,6 +58,15 @@ public class LectureRepository {
         });
     }
 
+    public Lecture getById(String id){
+        for(Lecture l:lectures){
+            if(l.getId().equals(id)){
+                return l;
+            }
+        }
+        return null;
+    }
+
     public List<Lecture> getLectures(){
         return lectures;
     }

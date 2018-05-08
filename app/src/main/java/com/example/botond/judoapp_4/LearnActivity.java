@@ -1,9 +1,13 @@
 package com.example.botond.judoapp_4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.botond.judoapp_4.ctrl.LectureController;
 import com.example.botond.judoapp_4.domain.Lecture;
@@ -35,6 +39,21 @@ public class LearnActivity extends BaseActivity {
 
         ctrl.setAdapter(adapter);
         listView.setAdapter(adapter);
+
+        listView. setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Lecture selectedLecture = lectures.get(position);
+
+                Intent intent = new Intent(LearnActivity.this, ViewLectureActivity.class);
+
+                intent.putExtra("id", selectedLecture.getId());
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
