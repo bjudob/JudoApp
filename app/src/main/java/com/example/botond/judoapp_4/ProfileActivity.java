@@ -5,13 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.text.InputType;
-import android.text.method.KeyListener;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.botond.judoapp_4.auth.LogInActivity;
+import com.example.botond.judoapp_4.auth.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -133,22 +129,6 @@ public class ProfileActivity extends BaseActivity {
 
 
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.menuLogout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
-
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-        }
-
-        return true;
     }
 
     private void loadUserInfo(){

@@ -12,6 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.botond.judoapp_4.auth.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     protected BottomNavigationView navigationView;
@@ -66,6 +69,22 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.profile_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuLogout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+        }
 
         return true;
     }

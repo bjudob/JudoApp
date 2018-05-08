@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/japan_mobile"
-    tools:context="com.example.botond.judoapp_4.SignUpActivity">
+    tools:context="com.example.botond.judoapp_4.auth.SignUpActivity">
 
     <EditText
         android:id="@+id/input_email"
