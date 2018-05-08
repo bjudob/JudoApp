@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.botond.judoapp_4.scores.PlayerScore;
 import com.example.botond.judoapp_4.scores.PlayerScore2018;
 import com.example.botond.judoapp_4.scores.ScoreDisplay;

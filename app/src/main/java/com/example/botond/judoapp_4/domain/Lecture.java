@@ -5,19 +5,19 @@ public class Lecture {
     private String title;
     private String text;
     private String photo;
-    private String authorId;
+    private String author;
 
     //no args constructor
     public Lecture() {
     }
 
     //all args constructor
-    public Lecture(String id, String title, String text, String photo, String authorId) {
+    public Lecture(String id, String title, String text, String photo, String author) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.photo = photo;
-        this.authorId = authorId;
+        this.author = author;
     }
 
     public String getId() {
@@ -52,11 +52,16 @@ public class Lecture {
         this.photo = photo;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @Override
+    public String toString(){
+        return title;
     }
 }
