@@ -21,7 +21,7 @@ public class LearnActivity extends BaseActivity {
     private ArrayAdapter<Lecture> adapter;
 
     private ListView listView;
-    private LectureController ctrl;
+    private static LectureController ctrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,10 @@ public class LearnActivity extends BaseActivity {
             }
         });
 
+    }
+
+    public static LectureController getCtrl() {
+        return ctrl;
     }
 
     @Override

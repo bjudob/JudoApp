@@ -15,6 +15,10 @@ public class LectureController {
         repo=new LectureRepository();
     }
 
+    public Lecture getById(String id) {
+        return repo.getById(id);
+    }
+
     public void addLecture(Lecture lecture){
         repo.addLecture(lecture);
     }
