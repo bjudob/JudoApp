@@ -190,7 +190,8 @@ public class ProfileSettingsActivity extends PreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
+            bindPreferenceSummaryToValue(findPreference("pref_display_name"));
+            bindPreferenceSummaryToValue(findPreference("pref_email_address"));
             bindPreferenceSummaryToValue(findPreference("example_list"));
         }
 
