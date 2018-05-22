@@ -85,6 +85,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
+
+            case R.id.menuSettings:
+
+                Intent i = new Intent(this, ProfileSettingsActivity.class);
+                startActivity(i);
+                break;
         }
 
         return true;
