@@ -192,7 +192,8 @@ public class ProfileSettingsActivity extends PreferenceActivity {
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("pref_display_name"));
             bindPreferenceSummaryToValue(findPreference("pref_email_address"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            bindPreferenceSummaryToValue(findPreference("belt_list"));
+            bindPreferenceSummaryToValue(findPreference("country_list"));
         }
 
         @Override

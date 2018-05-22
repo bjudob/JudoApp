@@ -29,16 +29,52 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">My Name</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+    <string name="pref_title_belts">Belt</string>
+    <string-array name="pref_belt_list_titles">
+        <item>White</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Black</item>
     </string-array>
-    <string-array name="pref_example_list_values">
+    <string-array name="pref_belt_list_values">
         <item>1</item>
-        <item>0</item>
-        <item>-1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string name="pref_title_countries">Country</string>
+    <string-array name="pref_country_list_titles">
+        <item>ROU</item>
+        <item>HUN</item>
+        <item>JPN</item>
+        <item>RUS</item>
+        <item>USA</item>
+        <item>BUL</item>
+        <item>GBR</item>
+        <item>GEO</item>
+        <item>MGL</item>
+        <item>CHN</item>
+        <item>AUS</item>
+        <item>GER</item>
+        <item>FRA</item>
+        <item>BLR</item>
+        <item>SPA</item>
+        <item>ARG</item>
+        <item>BRA</item>
+        <item>KOR</item>
+        <item>EGY</item>
+        <item>UKR</item>
+        <item>MEX</item>
+        <item>POR</item>
+        <item>SRB</item>
+        <item>SWE</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
