@@ -27,6 +27,7 @@
             android:name=".ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
             android:parentActivityName=".ProfileActivity">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.botond.judoapp_4.ProfileActivity" />

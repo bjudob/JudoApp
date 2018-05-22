@@ -16,12 +16,12 @@
         <item name="android:textColorHint">@color/colorWhite</item>
     </style>
 
-    <style
-        name="AppBaseTheme"
-        parent="android:style/Theme.NoTitleBar.Fullscreen"
-        >
+    <style name="Theme.AppCompat.Light.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
-
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColorHint">@color/colorWhite</item>
     </style>
 
 </resources>
