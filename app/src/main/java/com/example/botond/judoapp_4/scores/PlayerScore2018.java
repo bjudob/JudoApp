@@ -50,10 +50,11 @@ public class PlayerScore2018 implements PlayerScore{
     @Override
     public void addWazari(int nr) {
         if(nr<0 && wazari>=2){
-            ippon=false;
+            addIppon(-1);
         }
-
-        wazari+=nr;
+        else{
+            wazari+=nr;
+        }
 
         if(wazari<0){
             wazari=0;

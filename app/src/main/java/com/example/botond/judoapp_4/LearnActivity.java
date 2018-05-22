@@ -51,7 +51,6 @@ public class LearnActivity extends BaseActivity {
 
                 intent.putExtra("id", selectedLecture.getId());
                 startActivity(intent);
-                finish();
             }
         });
 

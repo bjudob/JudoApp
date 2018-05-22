@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     protected BottomNavigationView navigationView;
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             navigationView.setOnNavigationItemSelectedListener(this);
         }
 
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbarInclude);
+        toolbar=(Toolbar) findViewById(R.id.toolbarInclude);
 
         setSupportActionBar(toolbar);
     }

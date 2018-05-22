@@ -31,11 +31,11 @@ public class LectureRepository {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String id = dataSnapshot.getKey();
                 String title = (String) dataSnapshot.child("title").getValue();
-                String author = (String) dataSnapshot.child("author").getValue();
                 String text = (String) dataSnapshot.child("text").getValue();
                 String photo = (String) dataSnapshot.child("photo").getValue();
+                String author = (String) dataSnapshot.child("author").getValue();
 
-                Lecture l = new Lecture(id, title, author, text, photo);
+                Lecture l = new Lecture(id, title, text, photo, author);
 
                 lectures.add(l);
 

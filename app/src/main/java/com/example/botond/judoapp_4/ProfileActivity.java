@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.botond.judoapp_4.auth.LogInActivity;
-import com.example.botond.judoapp_4.auth.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -120,7 +118,7 @@ public class ProfileActivity extends BaseActivity {
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uriProfileImage);
                 imageView.setImageBitmap(bitmap);
 
-                uploadImageToFirebaseStorae();
+                uploadImageToFirebaseStorage();
                 buttonSaveProfile.setVisibility(View.VISIBLE);
 
             } catch (IOException e) {
@@ -228,7 +226,7 @@ public class ProfileActivity extends BaseActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Profile Picture"),CHOOSE_IMAGE);
     }
 
-    private void uploadImageToFirebaseStorae(){
+    private void uploadImageToFirebaseStorage(){
         progressBar.setVisibility(View.VISIBLE);
 
         String refString="profilepics/"+System.currentTimeMillis()+".jpg";
