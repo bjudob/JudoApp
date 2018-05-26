@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.preference.ListPreference;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -34,7 +35,7 @@ public class ProfileActivity extends BaseActivity {
     private static final int CHOOSE_IMAGE = 101;
 
     TextView textViewEmailVerified, textViewUsername;
-    ImageView imageView;
+    ImageView imageView, imageViewBelt;
     String profileImageUrl;
 
     ProgressBar progressBar;
@@ -42,7 +43,7 @@ public class ProfileActivity extends BaseActivity {
     FirebaseAuth mAuth;
     Uri uriProfileImage;
 
-    private String displayNameKey;
+    private String displayNameKey, beltKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class ProfileActivity extends BaseActivity {
         mAuth=FirebaseAuth.getInstance();
 
         imageView=(ImageView) findViewById(R.id.imageViewCamera);
+        imageViewBelt=(ImageView) findViewById(R.id.imageViewBelt);
         textViewUsername =(TextView) findViewById(R.id.textViewUsername);
         progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
@@ -59,6 +61,7 @@ public class ProfileActivity extends BaseActivity {
         displayNameKey=getString(R.string.pref_display_name);
 
         loadUserInfo();
+        loadBelt();
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +69,6 @@ public class ProfileActivity extends BaseActivity {
                 showImageChooser();
             }
         });
-
     }
 
     @Override
@@ -79,6 +81,13 @@ public class ProfileActivity extends BaseActivity {
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadBelt();
     }
 
     @Override
@@ -233,5 +242,35 @@ public class ProfileActivity extends BaseActivity {
                         }
                     });
         }
+    }
+
+    private void loadBelt(){
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+        String belt=prefs.getString("belt_list", null);
+
+        switch (belt){
+            case "belt_white":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_white));
+                break;
+            case "belt_yellow":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_yellow));
+                break;
+            case "belt_orange":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_orange));
+                break;
+            case "belt_green":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_green));
+                break;
+            case "belt_blue":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_blue));
+                break;
+            case "belt_brown":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_brown));
+                break;
+            case "belt_black":
+                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_black));
+                break;
+        }
+
     }
 }

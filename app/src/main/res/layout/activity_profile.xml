@@ -99,6 +99,16 @@
         android:layout_height="fill_parent"
         android:visibility="gone" />
 
+    <ImageView
+        android:id="@+id/imageViewBelt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCamera"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCamera"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCamera"
+        app:srcCompat="@drawable/belt_orange" />
+
 
 </android.support.constraint.ConstraintLayout>
 
