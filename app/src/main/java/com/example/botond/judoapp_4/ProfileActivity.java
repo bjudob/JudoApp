@@ -1,14 +1,14 @@
 package com.example.botond.judoapp_4;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -32,16 +33,16 @@ public class ProfileActivity extends BaseActivity {
 
     private static final int CHOOSE_IMAGE = 101;
 
-    TextView textViewEmailVerified;
+    TextView textViewEmailVerified, textViewUsername;
     ImageView imageView;
-    EditText editTextUsername;
     String profileImageUrl;
-    Button buttonEdit, buttonSaveProfile;
 
     ProgressBar progressBar;
 
     FirebaseAuth mAuth;
     Uri uriProfileImage;
+
+    private String displayNameKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,11 @@ public class ProfileActivity extends BaseActivity {
         mAuth=FirebaseAuth.getInstance();
 
         imageView=(ImageView) findViewById(R.id.imageViewCamera);
-        editTextUsername =(EditText) findViewById(R.id.editTextCamera);
+        textViewUsername =(TextView) findViewById(R.id.textViewUsername);
         progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
-        buttonEdit=(Button) findViewById(R.id.buttonEditUsername);
-        buttonSaveProfile=(Button) findViewById(R.id.buttonSave);
+
+        displayNameKey=getString(R.string.pref_display_name);
 
         loadUserInfo();
 
@@ -63,22 +64,6 @@ public class ProfileActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 showImageChooser();
-            }
-        });
-
-        buttonSaveProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //saveUserInfo();
-            }
-        });
-
-        buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //editTextUsername.setInputType(InputType.TYPE_CLASS_TEXT);
-                editTextUsername.setEnabled(true);
-                buttonSaveProfile.setVisibility(View.VISIBLE);
             }
         });
 
@@ -118,7 +103,7 @@ public class ProfileActivity extends BaseActivity {
                 imageView.setImageBitmap(bitmap);
 
                 uploadImageToFirebaseStorage();
-                buttonSaveProfile.setVisibility(View.VISIBLE);
+                saveUserInfo(null);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -133,6 +118,11 @@ public class ProfileActivity extends BaseActivity {
         final FirebaseUser user=mAuth.getCurrentUser();
 
         if(user!=null) {
+            SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+            String displayname=prefs.getString(displayNameKey, null);
+            if(displayname!=null && displayname!=user.getDisplayName()){
+                saveUserInfo(displayname);
+            }
             if(user.getPhotoUrl()!=null){
                 String photoUrl = user.getPhotoUrl().toString();
                 Glide.with(this)
@@ -142,7 +132,7 @@ public class ProfileActivity extends BaseActivity {
 
             if(user.getDisplayName()!=null) {
                 String displayName = user.getDisplayName();
-                editTextUsername.setText(displayName);
+                textViewUsername.setText(displayName);
             }
 
             if(user.isEmailVerified()){
@@ -167,6 +157,48 @@ public class ProfileActivity extends BaseActivity {
 
 
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void saveUserInfo(String displayName){
+
+        FirebaseUser user=mAuth.getCurrentUser();
+
+        if(user!=null){
+            if(profileImageUrl!=null) {
+                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .setPhotoUri(Uri.parse(profileImageUrl))
+                        .build();
+                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+            else{
+                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .build();
+                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            //Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                            loadUserInfo();
+
+                        } else {
+                            //Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }
     }
 
     private void showImageChooser(){

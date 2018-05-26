@@ -18,16 +18,9 @@ import android.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.List;
 
@@ -268,51 +261,5 @@ public class ProfileSettingsActivity extends PreferenceActivity {
         }
     }
 
-    private void saveUserInfo(String displayName){
-        String displayName= editTextUsername.getText().toString();
 
-        if(displayName.isEmpty()){
-            editTextUsername.setError("Name required");
-            editTextUsername.requestFocus();
-            return;
-        }
-
-        FirebaseUser user=mAuth.getCurrentUser();
-
-        if(user!=null){
-            if(profileImageUrl!=null) {
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .setPhotoUri(Uri.parse(profileImageUrl))
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-            else{
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        }
-    }
 }
