@@ -40,13 +40,13 @@
         <item>Black</item>
     </string-array>
     <string-array name="pref_belt_list_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
+        <item>belt_white</item>
+        <item>belt_yellow</item>
+        <item>belt_orange</item>
+        <item>belt_green</item>
+        <item>belt_blue</item>
+        <item>belt_brown</item>
+        <item>belt_black</item>
     </string-array>
 
     <string name="pref_title_countries">Country</string>
