@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -70,7 +69,7 @@ public class ProfileActivity extends BaseActivity {
         buttonSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveUserInfo();
+                //saveUserInfo();
             }
         });
 
@@ -168,54 +167,6 @@ public class ProfileActivity extends BaseActivity {
 
 
         progressBar.setVisibility(View.GONE);
-    }
-
-    private void saveUserInfo(){
-        String displayName= editTextUsername.getText().toString();
-
-        if(displayName.isEmpty()){
-            editTextUsername.setError("Name required");
-            editTextUsername.requestFocus();
-            return;
-        }
-
-        FirebaseUser user=mAuth.getCurrentUser();
-
-        if(user!=null){
-            if(profileImageUrl!=null) {
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .setPhotoUri(Uri.parse(profileImageUrl))
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-            else{
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        }
     }
 
     private void showImageChooser(){
