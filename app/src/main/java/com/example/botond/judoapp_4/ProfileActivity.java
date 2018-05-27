@@ -87,6 +87,7 @@ public class ProfileActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
+        loadUserInfo();
         loadBelt();
     }
 
@@ -199,7 +200,7 @@ public class ProfileActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             //Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                            loadUserInfo();
+                            textViewUsername.setText(displayName);
 
                         } else {
                             //Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
