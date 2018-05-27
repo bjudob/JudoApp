@@ -248,28 +248,30 @@ public class ProfileActivity extends BaseActivity {
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
         String belt=prefs.getString("belt_list", null);
 
-        switch (belt){
-            case "belt_white":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_white));
-                break;
-            case "belt_yellow":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_yellow));
-                break;
-            case "belt_orange":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_orange));
-                break;
-            case "belt_green":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_green));
-                break;
-            case "belt_blue":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_blue));
-                break;
-            case "belt_brown":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_brown));
-                break;
-            case "belt_black":
-                imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_black));
-                break;
+        if(belt!=null) {
+            switch (belt) {
+                case "belt_white":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_white));
+                    break;
+                case "belt_yellow":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_yellow));
+                    break;
+                case "belt_orange":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_orange));
+                    break;
+                case "belt_green":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_green));
+                    break;
+                case "belt_blue":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_blue));
+                    break;
+                case "belt_brown":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_brown));
+                    break;
+                case "belt_black":
+                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_black));
+                    break;
+            }
         }
 
     }
