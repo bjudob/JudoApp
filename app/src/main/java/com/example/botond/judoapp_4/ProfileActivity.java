@@ -113,7 +113,6 @@ public class ProfileActivity extends BaseActivity {
                 imageView.setImageBitmap(bitmap);
 
                 uploadImageToFirebaseStorage();
-                saveUserInfo(null);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -183,6 +182,7 @@ public class ProfileActivity extends BaseActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            loadUserInfo();
                             Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
 
                         } else {
@@ -232,6 +232,7 @@ public class ProfileActivity extends BaseActivity {
                     progressBar.setVisibility(View.GONE);
 
                     profileImageUrl=taskSnapshot.getDownloadUrl().toString();
+                    saveUserInfo(null);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
