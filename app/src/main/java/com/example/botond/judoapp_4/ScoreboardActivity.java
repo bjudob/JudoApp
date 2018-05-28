@@ -66,7 +66,7 @@ public class ScoreboardActivity extends BaseActivity {
         setShidoImage(playerWhite, scoreDisplayWhite);
         setShidoImage(playerBlue, scoreDisplayBlue);
 
-        chronometer.setCountDown(true);
+        //chronometer.setCountDown(true);
         chronometer.setBase(SystemClock.elapsedRealtime()+CONTEST_TIME);
         pauseOffset=SystemClock.elapsedRealtime()-chronometer.getBase();
 
