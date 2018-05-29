@@ -24,7 +24,7 @@ public class ViewLectureActivity extends AppCompatActivity {
         textViewTitle=(TextView) findViewById(R.id.textViewTitle);
         textViewText=(TextView) findViewById(R.id.textViewText);
 
-        ctrl=LearnActivity.getCtrl();
+        //ctrl=LearnActivity.getCtrl();
 
         Lecture lecture=ctrl.getById(id);
         loadUi(lecture);

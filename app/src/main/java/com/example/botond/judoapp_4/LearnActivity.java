@@ -17,47 +17,13 @@ import java.util.List;
 
 public class LearnActivity extends BaseActivity {
 
-    private List<Lecture> lectures;
-    private ArrayAdapter<Lecture> adapter;
-
-    private ListView listView;
-    private static LectureController ctrl;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_learn);
 
-        listView=(ListView) findViewById(R.id.listViewLectures);
 
-        ctrl=new LectureController();
 
-        lectures=ctrl.getLectures();
-
-        adapter = new ArrayAdapter<Lecture>(this,
-                R.layout.listview_elem, lectures);
-
-        ctrl.setAdapter(adapter);
-        listView.setAdapter(adapter);
-
-        listView. setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-
-                Lecture selectedLecture = lectures.get(position);
-
-                Intent intent = new Intent(LearnActivity.this, ViewLectureActivity.class);
-
-                intent.putExtra("id", selectedLecture.getId());
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    public static LectureController getCtrl() {
-        return ctrl;
     }
 
     @Override
