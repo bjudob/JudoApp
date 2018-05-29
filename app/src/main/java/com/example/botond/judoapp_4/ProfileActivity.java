@@ -129,7 +129,7 @@ public class ProfileActivity extends BaseActivity {
         if(user!=null) {
             SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
             String displayname=prefs.getString(displayNameKey, null);
-            
+
             if(displayname!=null && !displayname.equals(user.getDisplayName())){
                 saveUserInfo(displayname);
             }

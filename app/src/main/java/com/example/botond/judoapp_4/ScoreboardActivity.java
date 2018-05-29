@@ -14,7 +14,7 @@ import com.example.botond.judoapp_4.scores.ScoreDisplay;
 
 public class ScoreboardActivity extends BaseActivity {
 
-    private static final int CONTEST_MINS = 4;
+    private static final int CONTEST_MINS = 0;
     private static final int CONTEST_TIME = CONTEST_MINS*60*1000;
 
     private Context context=this;
