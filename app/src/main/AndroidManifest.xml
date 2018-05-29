@@ -3,11 +3,11 @@
     package="com.example.botond.judoapp_4">
 
     <application
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/judogi_icon_2"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/judogi_icon_2"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -29,11 +29,11 @@
             android:name=".ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
             android:parentActivityName=".ProfileActivity">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.botond.judoapp_4.ProfileActivity" />
         </activity>
+        <activity android:name=".BeltsActivity"></activity>
     </application>
 
 </manifest>

@@ -17,8 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    VideoView videoView;
-    Button loginButton, signupButton, facebookButton;
+    private VideoView videoView;
+    private Button loginButton, signupButton, facebookButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
