@@ -33,8 +33,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.botond.judoapp_4.ProfileActivity" />
         </activity>
-        <activity android:name=".BeltsActivity" />
-        <activity android:name=".ViewBeltActivity"></activity>
+        <activity android:name=".belts.BeltsActivity" />
+        <activity android:name=".belts.ViewBeltActivity"></activity>
     </application>
 
 </manifest>
