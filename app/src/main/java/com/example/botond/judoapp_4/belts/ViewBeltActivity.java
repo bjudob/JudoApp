@@ -1,5 +1,6 @@
 package com.example.botond.judoapp_4.belts;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,6 +15,9 @@ public class ViewBeltActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_belt);
+
+        Intent intent = getIntent();
+        String quote = intent.getStringExtra("beltName");
 
     }
 }
