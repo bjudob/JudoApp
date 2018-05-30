@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/japan_mobile"
     tools:context=".BeltsActivity">
 
     <ImageView
@@ -45,8 +46,9 @@
                 android:id="@+id/buttonWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/learn_menu_button_bg"
-                android:text="White (6 Kyu)"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
+                android:text="White    (6 Kyu)"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 
@@ -55,9 +57,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Yellow (5 Kyu)"
+                android:text="Yellow  (5 Kyu)"
                 android:textColor="@color/colorYellow"
                 android:textSize="20sp" />
 
@@ -66,9 +69,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Orange (4 Kyu)"
+                android:text="Orange  (4 Kyu)"
                 android:textColor="@color/colorOrange"
                 android:textSize="20sp" />
 
@@ -77,9 +81,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Green (3 Kyu)"
+                android:text="Green    (3 Kyu)"
                 android:textColor="@color/colorGreen"
                 android:textSize="20sp" />
 
@@ -88,9 +93,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Blue (2 Kyu)"
+                android:text="Blue     (2 Kyu)"
                 android:textColor="@color/colorBlue"
                 android:textSize="20sp" />
 
@@ -99,9 +105,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Brown (1 Kyu)"
+                android:text="Brown   (1 Kyu)"
                 android:textColor="@color/colorBrown"
                 android:textSize="20sp" />
 
@@ -110,9 +117,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/learn_menu_button_bg"
+                android:background="@drawable/button_bg_learn_menu"
+                android:textStyle="bold"
                 android:paddingTop="10dp"
-                android:text="Black (1 Dan)"
+                android:text="Black   (1 Dan)"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp" />
 
