@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.botond.judoapp_4.auth.SignUpActivity;
 import com.example.botond.judoapp_4.ctrl.LectureController;
 import com.example.botond.judoapp_4.domain.Lecture;
+import com.example.botond.judoapp_4.manager.ResourceManager;
 import com.example.botond.judoapp_4.repo.LectureRepository;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class LearnActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_learn);
+
+        ResourceManager.init();
 
         techniquesButton=(Button) findViewById(R.id.buttonTechniques);
 
