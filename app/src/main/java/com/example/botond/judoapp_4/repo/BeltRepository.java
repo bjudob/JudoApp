@@ -76,6 +76,15 @@ public class BeltRepository {
         return null;
     }
 
+    public Belt getByName(String name){
+        for(Belt b:belts){
+            if(b.getName().equals(name)){
+                return b;
+            }
+        }
+        return null;
+    }
+
     public List<Belt> getBelts(){
         return belts;
     }
