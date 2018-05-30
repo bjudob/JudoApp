@@ -34,7 +34,8 @@
                 android:value="com.example.botond.judoapp_4.ProfileActivity" />
         </activity>
         <activity android:name=".belts.BeltsActivity" />
-        <activity android:name=".belts.ViewBeltActivity"></activity>
+        <activity android:name=".belts.ViewBeltActivity" />
+        <activity android:name=".belts.ViewThrowActivity"></activity>
     </application>
 
 </manifest>
