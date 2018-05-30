@@ -9,4 +9,7 @@
     <color name="colorRed">#E80000</color>
     <color name="colorGreen">#21ce26</color>
     <color name="colorBlack">#000001</color>
+    <color name="colorYellow">#f9d20e</color>
+    <color name="colorOrange">#FFA500</color>
+    <color name="colorBrown">#49311C</color>
 </resources>

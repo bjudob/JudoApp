@@ -6,4 +6,116 @@
     android:layout_height="match_parent"
     tools:context=".BeltsActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.488"
+        app:srcCompat="@drawable/judo_throw_boti_fra" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:layout_constraintVertical_bias="0.058">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/learn_menu_button_bg"
+                android:text="White"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonYellow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Yellow"
+                android:textColor="@color/colorYellow"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonOrange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Orange"
+                android:textColor="@color/colorOrange"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Green"
+                android:textColor="@color/colorGreen"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Blue"
+                android:textColor="@color/colorBlue"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonBrown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Brown"
+                android:textColor="@color/colorBrown"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/buttonBlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/learn_menu_button_bg"
+                android:paddingTop="10dp"
+                android:text="Black"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
