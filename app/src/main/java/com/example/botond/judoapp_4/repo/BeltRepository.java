@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Lecture;
+import com.example.botond.judoapp_4.domain.Throw;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -21,7 +22,6 @@ public class BeltRepository {
 
     DatabaseReference databaseReference;
     List<Belt> belts;
-    ArrayAdapter<Belt> adapter;
 
     public BeltRepository(){
         belts=new ArrayList<>();
@@ -32,14 +32,25 @@ public class BeltRepository {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String id = dataSnapshot.getKey();
                 String name = (String) dataSnapshot.child("name").getValue();
+                String name_jpn = (String) dataSnapshot.child("name_jpn").getValue();
 
-                Belt b = new Belt(id, name);
+               DataSnapshot belt_throws=dataSnapshot.child("throws");
+
+                Belt b = new Belt(id, name, name_jpn);
+
+                for (DataSnapshot ds:belt_throws.getChildren()) {
+                    String throw_id=ds.getKey();
+                    String throw_name = (String) ds.child("name").getValue();
+                    String throw_description = (String) ds.child("description").getValue();
+                    String throw_img = (String) ds.child("img").getValue();
+
+                    Throw t=new Throw(throw_id, throw_name, throw_description, throw_img);
+
+                    b.addThrow(t);
+                }
 
                 belts.add(b);
 
-                if(adapter!=null){
-                    adapter.notifyDataSetChanged();
-                }
             }
 
             @Override
@@ -89,11 +100,4 @@ public class BeltRepository {
         });
     }
 
-    public ArrayAdapter<Belt> getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(ArrayAdapter<Belt> adapter) {
-        this.adapter = adapter;
-    }
 }

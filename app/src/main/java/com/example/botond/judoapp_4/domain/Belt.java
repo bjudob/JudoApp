@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Belt {
     private String id;
-    private String name;
+    private String name, name_jpn;
     private List<Throw> throwList;
 
     public Belt() {
@@ -18,9 +18,10 @@ public class Belt {
         throwList=new ArrayList<>();
     }
 
-    public Belt(String id, String name) {
+    public Belt(String id, String name, String name_jpn) {
         this.id = id;
         this.name = name;
+        this.name_jpn=name_jpn;
         throwList=new ArrayList<>();
     }
 
@@ -44,6 +45,14 @@ public class Belt {
         this.name = name;
     }
 
+    public String getName_jpn() {
+        return name_jpn;
+    }
+
+    public void setName_jpn(String name_jpn) {
+        this.name_jpn = name_jpn;
+    }
+
     public List<Throw> getThrowList() {
         return throwList;
     }
@@ -51,6 +60,7 @@ public class Belt {
     public void setThrowList(List<Throw> throwList) {
         this.throwList = throwList;
     }
+
 
     @Override
     public boolean equals(Object o) {
