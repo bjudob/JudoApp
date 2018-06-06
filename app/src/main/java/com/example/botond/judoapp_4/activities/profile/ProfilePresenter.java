@@ -69,7 +69,7 @@ public class ProfilePresenter implements ProfileMVP.presenter{
         }
         final FirebaseUser user=mAuth.getCurrentUser();
 
-        if(user!=null) {
+        if(user!=null && context!=null) {
             SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(context);
             String displayname=prefs.getString(displayNameKey, null);
 
@@ -199,39 +199,41 @@ public class ProfilePresenter implements ProfileMVP.presenter{
 
     @Override
     public void loadBelt(){
-        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(context);
-        String belt=prefs.getString("belt_list", null);
+        if(context!=null) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            String belt = prefs.getString("belt_list", null);
 
-        if(belt!=null) {
-            switch (belt) {
-                case "belt_white":
-                    setBeltImage(R.drawable.belt_white);
-                    break;
-                case "belt_yellow":
-                    setBeltImage(R.drawable.belt_yellow);
-                    break;
-                case "belt_orange":
-                    setBeltImage(R.drawable.belt_orange);
-                    break;
-                case "belt_green":
-                    setBeltImage(R.drawable.belt_green);
-                    break;
-                case "belt_blue":
-                    setBeltImage(R.drawable.belt_blue);
-                    break;
-                case "belt_brown":
-                    setBeltImage(R.drawable.belt_brown);
-                    break;
-                case "belt_black":
-                    setBeltImage(R.drawable.belt_black);
-                    break;
+            if (belt != null) {
+                switch (belt) {
+                    case "belt_white":
+                        setBeltImage(R.drawable.belt_white);
+                        break;
+                    case "belt_yellow":
+                        setBeltImage(R.drawable.belt_yellow);
+                        break;
+                    case "belt_orange":
+                        setBeltImage(R.drawable.belt_orange);
+                        break;
+                    case "belt_green":
+                        setBeltImage(R.drawable.belt_green);
+                        break;
+                    case "belt_blue":
+                        setBeltImage(R.drawable.belt_blue);
+                        break;
+                    case "belt_brown":
+                        setBeltImage(R.drawable.belt_brown);
+                        break;
+                    case "belt_black":
+                        setBeltImage(R.drawable.belt_black);
+                        break;
+                }
             }
         }
 
     }
 
     private void setBeltImage(int imgId){
-        if(view!=null){
+        if(view!=null && context!=null){
             view.setBeltImage(context.getDrawable(imgId));
         }
     }

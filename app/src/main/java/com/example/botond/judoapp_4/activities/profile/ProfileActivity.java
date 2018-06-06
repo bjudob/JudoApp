@@ -51,7 +51,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_profile);
 
-        presenter=new ProfilePresenter(this,this);
+        presenter=ProfilePresenter.getInstance(this,this);
 
         imageView=(ImageView) findViewById(R.id.imageViewCamera);
         imageViewBelt=(ImageView) findViewById(R.id.imageViewBelt);
