@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.botond.judoapp_4.activities.ProfileActivity;
+import com.example.botond.judoapp_4.activities.profile.ProfileActivity;
 import com.example.botond.judoapp_4.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

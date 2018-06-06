@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities;
+package com.example.botond.judoapp_4.activities.scoreboard;
 
 import android.os.SystemClock;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.activities.BaseActivity;
 
 public class StopwatchActivity extends BaseActivity {
 
@@ -69,12 +70,12 @@ public class StopwatchActivity extends BaseActivity {
     }
 
     @Override
-    int getContentViewId() {
+    protected int getContentViewId() {
         return R.layout.activity_stopwatch;
     }
 
     @Override
-    int getNavigationMenuItemId() {
+    protected int getNavigationMenuItemId() {
         return R.id.navigation_scoreboard;
     }
 }

@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
-import com.example.botond.judoapp_4.activities.LearnActivity;
-import com.example.botond.judoapp_4.activities.ProfileActivity;
+import com.example.botond.judoapp_4.activities.learn.LearnActivity;
+import com.example.botond.judoapp_4.activities.profile.ProfileActivity;
 import com.example.botond.judoapp_4.R;
 import com.google.firebase.auth.FirebaseAuth;
 

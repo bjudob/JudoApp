@@ -12,6 +12,9 @@ import android.view.MenuItem;
 
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.activities.auth.MainActivity;
+import com.example.botond.judoapp_4.activities.learn.LearnActivity;
+import com.example.botond.judoapp_4.activities.profile.ProfileActivity;
+import com.example.botond.judoapp_4.activities.scoreboard.ScoreboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -100,7 +103,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         selectBottomNavigationBarItem(actionId);
     }
 
-    void selectBottomNavigationBarItem(int itemId) {
+    protected  void selectBottomNavigationBarItem(int itemId) {
         Menu menu = navigationView.getMenu();
         for (int i = 0, size = menu.size(); i < size; i++) {
             MenuItem item = menu.getItem(i);
@@ -112,8 +115,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         }
     }
 
-    abstract int getContentViewId();
+    abstract protected int getContentViewId();
 
-    abstract int getNavigationMenuItemId();
+    abstract protected int getNavigationMenuItemId();
 
 }

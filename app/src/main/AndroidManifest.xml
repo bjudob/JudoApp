@@ -20,18 +20,18 @@
         </activity>
         <activity android:name=".activities.auth.LogInActivity" />
         <activity android:name=".activities.auth.SignUpActivity" />
-        <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.LearnActivity" />
-        <activity android:name=".activities.ScoreboardActivity" />
-        <activity android:name=".activities.StopwatchActivity" />
-        <activity android:name=".activities.learn.ViewLectureActivity" />
+        <activity android:name=".activities.profile.ProfileActivity" />
+        <activity android:name=".activities.learn.LearnActivity" />
+        <activity android:name=".activities.scoreboard.ScoreboardActivity" />
+        <activity android:name=".activities.scoreboard.StopwatchActivity" />
+        <activity android:name=".activities.learn.notused.ViewLectureActivity" />
         <activity
             android:name=".activities.ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
-            android:parentActivityName=".activities.ProfileActivity">
+            android:parentActivityName=".activities.profile.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.botond.judoapp_4.activities.ProfileActivity" />
+                android:value="com.example.botond.judoapp_4.activities.profile.ProfileActivity" />
         </activity>
         <activity android:name=".activities.learn.belts.BeltsActivity" />
         <activity android:name=".activities.learn.belts.ViewBeltActivity" />

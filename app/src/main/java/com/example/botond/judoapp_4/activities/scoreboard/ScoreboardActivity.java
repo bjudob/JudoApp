@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities;
+package com.example.botond.judoapp_4.activities.scoreboard;
 
 import android.content.Context;
 import android.os.SystemClock;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.activities.BaseActivity;
 import com.example.botond.judoapp_4.domain.scores.PlayerScore;
 import com.example.botond.judoapp_4.domain.scores.PlayerScore2018;
 import com.example.botond.judoapp_4.domain.scores.ScoreDisplay;
@@ -335,12 +336,12 @@ public class ScoreboardActivity extends BaseActivity {
 
 
     @Override
-    int getContentViewId() {
+    protected int getContentViewId() {
         return R.layout.activity_scoreboard;
     }
 
     @Override
-    int getNavigationMenuItemId() {
+    protected int getNavigationMenuItemId() {
         return R.id.navigation_scoreboard;
     }
 

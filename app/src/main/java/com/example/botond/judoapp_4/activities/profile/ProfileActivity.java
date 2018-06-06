@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities;
+package com.example.botond.judoapp_4.activities.profile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.activities.BaseActivity;
 import com.example.botond.judoapp_4.activities.auth.LogInActivity;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -95,12 +96,12 @@ public class ProfileActivity extends BaseActivity {
     }
 
     @Override
-    int getContentViewId() {
+    protected int getContentViewId() {
         return R.layout.activity_profile;
     }
 
     @Override
-    int getNavigationMenuItemId() {
+    protected int getNavigationMenuItemId() {
         return R.id.navigation_profile;
     }
 
