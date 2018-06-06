@@ -48,4 +48,10 @@ public class ViewBeltActivity extends AppCompatActivity {
             listViewThrows.setAdapter(adapter);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }

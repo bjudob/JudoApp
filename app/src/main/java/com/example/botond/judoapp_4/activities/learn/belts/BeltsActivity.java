@@ -70,6 +70,12 @@ public class BeltsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     private void loadBeltData(String beltName){
         Intent intent = new Intent(BeltsActivity.this, ViewBeltActivity.class);
 
