@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities;
+package com.example.botond.judoapp_4.activities.learn;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

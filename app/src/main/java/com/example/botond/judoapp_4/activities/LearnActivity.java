@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.botond.judoapp_4.R;
-import com.example.botond.judoapp_4.activities.belts.BeltsActivity;
+import com.example.botond.judoapp_4.activities.learn.belts.BeltsActivity;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 public class LearnActivity extends BaseActivity {
