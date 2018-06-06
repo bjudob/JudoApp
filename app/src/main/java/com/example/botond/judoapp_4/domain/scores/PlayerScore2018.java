@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.scores;
+package com.example.botond.judoapp_4.domain.scores;
 
 public class PlayerScore2018 implements PlayerScore{
     private static final int MAX_SHIDO = 3;

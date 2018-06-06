@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.belts;
+package com.example.botond.judoapp_4.activities.belts;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
-import com.example.botond.judoapp_4.repo.BeltRepository;
 
 public class ViewBeltActivity extends AppCompatActivity {
 

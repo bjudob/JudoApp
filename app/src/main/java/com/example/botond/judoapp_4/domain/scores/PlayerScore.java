@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.scores;
+package com.example.botond.judoapp_4.domain.scores;
 
 public interface PlayerScore {
 

@@ -3,17 +3,17 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.example.botond.judoapp_4.ProfileSettingsActivity$GeneralPreferenceFragment"
+        android:fragment="com.example.botond.judoapp_4.activities.ProfileSettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="com.example.botond.judoapp_4.ProfileSettingsActivity$NotificationPreferenceFragment"
+        android:fragment="com.example.botond.judoapp_4.activities.ProfileSettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_alarm_black_24dp"
         android:title="@string/pref_header_scoreboard" />
 
     <header
-        android:fragment="com.example.botond.judoapp_4.ProfileSettingsActivity$DataSyncPreferenceFragment"
+        android:fragment="com.example.botond.judoapp_4.activities.ProfileSettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_book_black_24dp"
         android:title="@string/pref_header_data_sync" />
 

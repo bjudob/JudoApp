@@ -11,31 +11,31 @@
         android:roundIcon="@mipmap/judogi_icon_2"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-        <activity android:name=".auth.MainActivity">
+        <activity android:name=".activities.auth.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.LogInActivity" />
-        <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LearnActivity" />
-        <activity android:name=".ScoreboardActivity" />
-        <activity android:name=".StopwatchActivity" />
-        <activity android:name=".ViewLectureActivity" />
+        <activity android:name=".activities.auth.LogInActivity" />
+        <activity android:name=".activities.auth.SignUpActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.LearnActivity" />
+        <activity android:name=".activities.ScoreboardActivity" />
+        <activity android:name=".activities.StopwatchActivity" />
+        <activity android:name=".activities.ViewLectureActivity" />
         <activity
-            android:name=".ProfileSettingsActivity"
+            android:name=".activities.ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
-            android:parentActivityName=".ProfileActivity">
+            android:parentActivityName=".activities.ProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.botond.judoapp_4.ProfileActivity" />
+                android:value="com.example.botond.judoapp_4.activities.ProfileActivity" />
         </activity>
-        <activity android:name=".belts.BeltsActivity" />
-        <activity android:name=".belts.ViewBeltActivity" />
-        <activity android:name=".belts.ViewThrowActivity"></activity>
+        <activity android:name=".activities.belts.BeltsActivity" />
+        <activity android:name=".activities.belts.ViewBeltActivity" />
+        <activity android:name=".activities.belts.ViewThrowActivity"></activity>
     </application>
 
 </manifest>

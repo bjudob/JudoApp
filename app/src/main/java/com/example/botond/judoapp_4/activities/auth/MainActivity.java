@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.auth;
+package com.example.botond.judoapp_4.activities.auth;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
-import com.example.botond.judoapp_4.LearnActivity;
-import com.example.botond.judoapp_4.ProfileActivity;
+import com.example.botond.judoapp_4.activities.LearnActivity;
+import com.example.botond.judoapp_4.activities.ProfileActivity;
 import com.example.botond.judoapp_4.R;
 import com.google.firebase.auth.FirebaseAuth;
 

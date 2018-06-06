@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.auth;
+package com.example.botond.judoapp_4.activities.auth;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,46 +11,63 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.botond.judoapp_4.ProfileActivity;
+import com.example.botond.judoapp_4.activities.ProfileActivity;
 import com.example.botond.judoapp_4.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
-public class SignUpActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
 
     final Context context=this;
-    EditText editTextEmail,editTextUsername,editTextPassword;
+    EditText editTextEmail,editTextPassword;
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_log_in);
 
         editTextEmail=findViewById(R.id.input_email);
-        editTextUsername=findViewById(R.id.input_name);
         editTextPassword=findViewById(R.id.input_password);
-        progressBar=(ProgressBar)findViewById(R.id.progressbarSignUp);
+        progressBar=(ProgressBar)findViewById(R.id.progressbarLogIn);
 
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.btn_signup).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
+                loginUser();
             }
         });
 
+        findViewById(R.id.link_signup).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SignUpActivity.class);
+
+                startActivity(intent);
+            }
+        });
     }
 
-    private  void registerUser(){
-        final String email=editTextEmail.getText().toString().trim();
-        String username=editTextUsername.getText().toString().trim();
-        final String password=editTextPassword.getText().toString().trim();
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(mAuth.getCurrentUser()!=null){
+            finish();
+            Intent intent = new Intent(context, ProfileActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void loginUser(){
+
+        String email=editTextEmail.getText().toString().trim();
+        String password=editTextPassword.getText().toString().trim();
 
         if(!validateInput(email,password)){
             return;
@@ -58,40 +75,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-
-                            Toast.makeText(SignUpActivity.this, "User registered succesfully!",
-                                    Toast.LENGTH_SHORT).show();
-
-                            loginUser(email,password);
-
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            if(task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText(SignUpActivity.this, "Email address already registered!",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(SignUpActivity.this, "Registration failed!",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            //updateUI(null);
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-    private void loginUser(String email, String password){
-        finish();
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -105,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(SignUpActivity.this, "Incorrect email or password!",
+                    Toast.makeText(LogInActivity.this, "Incorrect email or password!",
                             Toast.LENGTH_SHORT).show();
                 }
             }

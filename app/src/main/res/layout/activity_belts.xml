@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/japan_mobile"
-    tools:context=".belts.BeltsActivity">
+    tools:context=".activities.belts.BeltsActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -30,12 +30,12 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline7"
-        app:layout_constraintVertical_bias="0.058">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,11 +46,12 @@
                 android:id="@+id/buttonWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="White    (6 Kyu)"
                 android:textColor="@color/colorWhite"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonYellow"
@@ -58,10 +59,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Yellow  (5 Kyu)"
                 android:textColor="@color/colorYellow"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonOrange"
@@ -69,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Orange  (4 Kyu)"
                 android:textColor="@color/colorOrange"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonGreen"
@@ -80,10 +81,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Green    (3 Kyu)"
                 android:textColor="@color/colorGreen"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonBlue"
@@ -91,10 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Blue     (2 Kyu)"
                 android:textColor="@color/colorBlue"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonBrown"
@@ -102,10 +103,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Brown   (1 Kyu)"
                 android:textColor="@color/colorBrown"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/buttonBlack"
@@ -113,10 +114,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_bg_learn_menu"
-                android:textStyle="bold"
                 android:text="Black   (1 Dan)"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
