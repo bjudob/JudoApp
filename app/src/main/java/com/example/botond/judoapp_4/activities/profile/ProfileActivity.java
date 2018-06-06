@@ -1,8 +1,10 @@
 package com.example.botond.judoapp_4.activities.profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -32,29 +34,24 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
     private static final int CHOOSE_IMAGE = 101;
 
-    TextView textViewEmailVerified, textViewUsername;
-    ImageView imageView, imageViewBelt;
-    String profileImageUrl;
+    private ProfileMVP.presenter presenter;
 
-    ProgressBar progressBar;
+    private TextView textViewEmailVerified, textViewUsername;
+    private ImageView imageView, imageViewBelt;
+    private ProgressBar progressBar;
 
-    FirebaseAuth mAuth;
-    Uri uriProfileImage;
-
-    private String displayNameKey, beltKey;
+    private Uri uriProfileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_profile);
 
-        ResourceManager.init();
-
-        mAuth=FirebaseAuth.getInstance();
+        presenter=new ProfilePresenter(this,this);
 
         imageView=(ImageView) findViewById(R.id.imageViewCamera);
         imageViewBelt=(ImageView) findViewById(R.id.imageViewBelt);
@@ -62,15 +59,33 @@ public class ProfileActivity extends BaseActivity {
         progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
         textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
 
-        displayNameKey=getString(R.string.pref_display_name);
-
-        loadUserInfo();
-        loadBelt();
+        presenter.loadUserInfo();
+        presenter.loadBelt();
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showImageChooser();
+            }
+        });
+
+        FirebaseUser user=presenter.getCurrentUser();
+
+        if(user==null){
+            finish();
+            Intent intent = new Intent(this, LogInActivity.class);
+            startActivity(intent);
+        }
+
+        textViewEmailVerified.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(ProfileActivity.this, "Verification email sent!",Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
@@ -79,20 +94,20 @@ public class ProfileActivity extends BaseActivity {
     protected void onStart(){
         super.onStart();
 
-        if(mAuth.getCurrentUser()==null){
-            finish();
-            Intent intent = new Intent(this, LogInActivity.class);
-            startActivity(intent);
-        }
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        loadUserInfo();
-        loadBelt();
+        presenter.loadUserInfo();
+        presenter.loadBelt();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.reset();
     }
 
     @Override
@@ -116,103 +131,13 @@ public class ProfileActivity extends BaseActivity {
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uriProfileImage);
                 imageView.setImageBitmap(bitmap);
 
-                uploadImageToFirebaseStorage();
+                presenter.uploadImageToFirebaseStorage(uriProfileImage);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
 
-        }
-    }
-
-    private void loadUserInfo(){
-        progressBar.setVisibility(View.VISIBLE);
-        final FirebaseUser user=mAuth.getCurrentUser();
-
-        if(user!=null) {
-            SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-            String displayname=prefs.getString(displayNameKey, null);
-
-            if(displayname!=null && !displayname.equals(user.getDisplayName())){
-                saveUserInfo(displayname);
-            }
-            if(user.getPhotoUrl()!=null){
-                String photoUrl = user.getPhotoUrl().toString();
-                Glide.with(this)
-                        .load(photoUrl)
-                        .into(imageView);
-            }
-
-            if(user.getDisplayName()!=null) {
-                String displayName = user.getDisplayName();
-                textViewUsername.setText(displayName);
-            }
-
-            if(user.isEmailVerified()){
-
-            }
-            else{
-                textViewEmailVerified.setText("Email not verified! (Click to Verify)");
-
-                textViewEmailVerified.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(ProfileActivity.this, "Verification email sent!",Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                });
-            }
-        }
-
-
-        progressBar.setVisibility(View.GONE);
-    }
-
-    private void saveUserInfo(String displayName){
-
-        FirebaseUser user=mAuth.getCurrentUser();
-
-        if(user!=null){
-            if(profileImageUrl!=null) {
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .setPhotoUri(Uri.parse(profileImageUrl))
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            loadUserInfo();
-                            Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-            else{
-                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName)
-                        .build();
-                user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            //Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                            textViewUsername.setText(displayName);
-
-                        } else {
-                            //Toast.makeText(ProfileActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
         }
     }
 
@@ -224,62 +149,42 @@ public class ProfileActivity extends BaseActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Profile Picture"),CHOOSE_IMAGE);
     }
 
-    private void uploadImageToFirebaseStorage(){
-        progressBar.setVisibility(View.VISIBLE);
 
-        String refString="profilepics/"+System.currentTimeMillis()+".jpg";
-        final StorageReference profileImageRef=FirebaseStorage.getInstance().getReference(refString);
-
-        if(uriProfileImage!=null){
-            profileImageRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressBar.setVisibility(View.GONE);
-
-                    profileImageUrl=taskSnapshot.getDownloadUrl().toString();
-                    saveUserInfo(null);
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressBar.setVisibility(View.GONE);
-
-                            Toast.makeText(ProfileActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+    @Override
+    public void showToast(String text) {
+        Toast.makeText(ProfileActivity.this,text,Toast.LENGTH_SHORT).show();
     }
 
-    private void loadBelt(){
-        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
-        String belt=prefs.getString("belt_list", null);
+    @Override
+    public void setBeltImage(Drawable drawable) {
+        imageViewBelt.setImageDrawable(drawable);
+    }
 
-        if(belt!=null) {
-            switch (belt) {
-                case "belt_white":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_white));
-                    break;
-                case "belt_yellow":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_yellow));
-                    break;
-                case "belt_orange":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_orange));
-                    break;
-                case "belt_green":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_green));
-                    break;
-                case "belt_blue":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_blue));
-                    break;
-                case "belt_brown":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_brown));
-                    break;
-                case "belt_black":
-                    imageViewBelt.setImageDrawable(getDrawable(R.drawable.belt_black));
-                    break;
-            }
-        }
+    @Override
+    public Context getContext() {
+        return this.getBaseContext();
+    }
 
+    @Override
+    public void setProgressBarVisibility(int visibility) {
+        progressBar.setVisibility(visibility);
+    }
+
+    @Override
+    public void loadProfilePicture(String photoUrl) {
+        Glide.with(this)
+                .load(photoUrl)
+                .into(imageView);
+    }
+
+    @Override
+    public void setUsername(String username) {
+        textViewUsername.setText(username);
+    }
+
+    @Override
+    public void setEmail(String email) {
+        textViewEmailVerified.setText(email);
+        textViewEmailVerified.setVisibility(View.VISIBLE);
     }
 }
