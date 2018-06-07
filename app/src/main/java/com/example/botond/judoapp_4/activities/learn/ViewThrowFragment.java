@@ -3,7 +3,7 @@ package com.example.botond.judoapp_4.activities.learn;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +17,11 @@ import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ViewThrowFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ViewThrowFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ViewThrowFragment extends Fragment {private static final String ARG_PARAM_BELT_NAME = "param1";
+public class ViewThrowFragment extends Fragment {
+    private static final String ARG_PARAM_BELT_NAME = "paramBeltName";
+    private static final String ARG_PARAM_THROW_ID = "paramThrowId";
 
-    private String beltName;
+    private String beltName, throwId;
     private Belt belt;
     private BeltController beltController;
     private TextView textViewBeltName;
@@ -40,10 +34,11 @@ public class ViewThrowFragment extends Fragment {private static final String ARG
     }
 
 
-    public static ViewThrowFragment newInstance(String param1) {
+    public static ViewThrowFragment newInstance(String beltName, String throwId) {
         ViewThrowFragment fragment = new ViewThrowFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_BELT_NAME, param1);
+        args.putString(ARG_PARAM_BELT_NAME, beltName);
+        args.putString(ARG_PARAM_THROW_ID, throwId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +48,7 @@ public class ViewThrowFragment extends Fragment {private static final String ARG
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             beltName = getArguments().getString(ARG_PARAM_BELT_NAME);
+            throwId = getArguments().getString(ARG_PARAM_THROW_ID);
         }
     }
 

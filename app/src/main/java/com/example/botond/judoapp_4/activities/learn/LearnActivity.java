@@ -64,6 +64,13 @@ public class LearnActivity extends BaseActivity implements
     }
 
     @Override
+    public void showThrow(String beltName, String throwId) {
+        ViewThrowFragment viewThrowFragment=ViewThrowFragment.newInstance(beltName, throwId);
+
+        changeFragment(viewThrowFragment);
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.activity_learn;
     }

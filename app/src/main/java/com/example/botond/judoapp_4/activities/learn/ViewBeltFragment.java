@@ -107,6 +107,6 @@ public class ViewBeltFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-
+        void showThrow(String beltName, String throwId);
     }
 }
