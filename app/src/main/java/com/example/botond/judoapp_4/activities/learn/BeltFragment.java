@@ -3,7 +3,7 @@ package com.example.botond.judoapp_4.activities.learn;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +14,22 @@ import com.example.botond.judoapp_4.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LearnMenuFragment.OnFragmentInteractionListener} interface
+ * {@link BeltFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link LearnMenuFragment#newInstance} factory method to
+ * Use the {@link BeltFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LearnMenuFragment extends Fragment {
+public class BeltFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private BeltFragment.OnFragmentInteractionListener mListener;
     private Button techniquesButton;
 
-    public LearnMenuFragment() {
+    public BeltFragment() {
         // Required empty public constructor
     }
 
-    public static LearnMenuFragment newInstance(String param1, String param2) {
-        LearnMenuFragment fragment = new LearnMenuFragment();
+    public static BeltFragment newInstance(String param1, String param2) {
+        BeltFragment fragment = new BeltFragment();
 
         return fragment;
     }
@@ -48,7 +48,7 @@ public class LearnMenuFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_learn_menu, container, false);
+        return inflater.inflate(R.layout.fragment_belt, container, false);
     }
 
     @Override
@@ -69,15 +69,15 @@ public class LearnMenuFragment extends Fragment {
         if (mListener != null) {
             //mListener.onFragmentInteraction(uri);
         }
-        ((LearnActivity)getActivity()).techniquesButtonClick();
+
 
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof BeltFragment.OnFragmentInteractionListener) {
+            mListener = (BeltFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

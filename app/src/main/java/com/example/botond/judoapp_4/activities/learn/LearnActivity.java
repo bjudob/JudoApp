@@ -28,16 +28,22 @@ public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnF
 
         frameLayout=(FrameLayout) findViewById(R.id.mainFrame);
 
-        LearnMenuFragment imageSelectorFragment = new LearnMenuFragment();
+        LearnMenuFragment menuFragment = new LearnMenuFragment();
+
+        changeFragment(menuFragment);
+    }
+
+    private void changeFragment(Fragment fragment){
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(frameLayout.getId(), imageSelectorFragment,
+        fragmentTransaction.replace(frameLayout.getId(), fragment,
                 LearnMenuFragment.class.getName());
 
         // Commit the transaction
         fragmentTransaction.commit();
     }
 
-    private void techniquesButtonClick(View view) {
+    public void techniquesButtonClick() {
         Intent intent = new Intent(this, BeltsActivity.class);
 
         startActivity(intent);
