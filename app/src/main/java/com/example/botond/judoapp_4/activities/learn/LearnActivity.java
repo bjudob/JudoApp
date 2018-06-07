@@ -21,14 +21,7 @@ public class LearnActivity extends BaseActivity {
 
         ResourceManager.init();
 
-        techniquesButton=(Button) findViewById(R.id.buttonTechniques);
 
-        techniquesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                techniquesButtonClick(view);
-            }
-        });
 
     }
 
