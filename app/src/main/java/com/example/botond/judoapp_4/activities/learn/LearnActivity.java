@@ -1,12 +1,8 @@
 package com.example.botond.judoapp_4.activities.learn;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.botond.judoapp_4.R;
@@ -22,6 +18,8 @@ public class LearnActivity extends BaseActivity implements
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
     private Fragment fragmentCurrent;
+
+    private String lastBeltName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +56,7 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void showBelt(String beltName) {
+        lastBeltName=beltName;
         ViewBeltFragment viewBeltFragment=ViewBeltFragment.newInstance(beltName);
 
         changeFragment(viewBeltFragment);
@@ -93,6 +92,12 @@ public class LearnActivity extends BaseActivity implements
             BeltFragment beltFragment = BeltFragment.newInstance();
 
             changeFragment(beltFragment);
+        }
+
+        if(fragmentCurrent instanceof ViewThrowFragment){
+            ViewBeltFragment viewBeltFragment = ViewBeltFragment.newInstance(lastBeltName);
+
+            changeFragment(viewBeltFragment);
         }
 
     }
