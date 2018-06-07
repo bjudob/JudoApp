@@ -119,4 +119,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
     abstract protected int getNavigationMenuItemId();
 
+    @Override
+    public void onBackPressed() {
+        
+    }
 }

@@ -21,6 +21,7 @@ public class LearnActivity extends BaseActivity implements
 
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
+    private Fragment fragmentCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class LearnActivity extends BaseActivity implements
 
         // Commit the transaction
         fragmentTransaction.commit();
+
+        fragmentCurrent=fragment;
     }
 
     public void techniquesButtonClick() {
@@ -76,7 +79,17 @@ public class LearnActivity extends BaseActivity implements
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        if(fragmentCurrent instanceof BeltFragment){
+            LearnMenuFragment menuFragment = LearnMenuFragment.newInstance();
 
+            changeFragment(menuFragment);
+        }
+
+        if(fragmentCurrent instanceof ViewBeltFragment){
+            BeltFragment beltFragment = BeltFragment.newInstance();
+
+            changeFragment(beltFragment);
+        }
 
     }
 }
