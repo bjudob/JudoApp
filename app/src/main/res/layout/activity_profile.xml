@@ -63,10 +63,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -76,7 +76,7 @@
         app:srcCompat="@drawable/judokas_profile_blur" />
 
     <ImageView
-        android:id="@+id/imageViewCamera"
+        android:id="@+id/imageViewProfilePic"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -85,10 +85,9 @@
         android:layout_marginStart="16dp"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
         app:srcCompat="@mipmap/judogi_icon_2" />
 
     <android.support.constraint.Guideline
@@ -109,9 +108,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewCamera"
-        app:layout_constraintStart_toStartOf="@+id/imageViewCamera"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCamera"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewProfilePic"
+        app:layout_constraintStart_toStartOf="@+id/imageViewProfilePic"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfilePic"
         app:srcCompat="@drawable/belt_orange" />
 
 

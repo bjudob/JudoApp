@@ -2,11 +2,9 @@ package com.example.botond.judoapp_4.activities.profile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
@@ -17,20 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.MemoryCategory;
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.activities.BaseActivity;
 import com.example.botond.judoapp_4.activities.auth.LogInActivity;
-import com.example.botond.judoapp_4.manager.ResourceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -53,7 +44,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
         presenter=ProfilePresenter.getInstance(this,this);
 
-        imageView=(ImageView) findViewById(R.id.imageViewCamera);
+        imageView=(ImageView) findViewById(R.id.imageViewProfilePic);
         imageViewBelt=(ImageView) findViewById(R.id.imageViewBelt);
         textViewUsername =(TextView) findViewById(R.id.textViewUsername);
         progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
@@ -172,6 +163,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
     @Override
     public void loadProfilePicture(String photoUrl) {
+        Glide.get(this).setMemoryCategory(MemoryCategory.LOW);
         Glide.with(this)
                 .load(photoUrl)
                 .into(imageView);
