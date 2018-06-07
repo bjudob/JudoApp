@@ -1,6 +1,7 @@
 package com.example.botond.judoapp_4.activities.learn;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.activities.learn.belts.BeltsActivity;
+import com.example.botond.judoapp_4.activities.learn.belts.ViewBeltActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +24,7 @@ import com.example.botond.judoapp_4.R;
  */
 public class BeltFragment extends Fragment {
 
+    private Button buttonWhite,buttonYellow,buttonOrange,buttonGreen,buttonBlue,buttonBrown,buttonBlack;
     private BeltFragment.OnFragmentInteractionListener mListener;
     private Button techniquesButton;
 
@@ -55,15 +59,60 @@ public class BeltFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        buttonWhite=(Button) getView().findViewById(R.id.buttonWhite);
+        buttonYellow=(Button) getView().findViewById(R.id.buttonYellow);
+        buttonOrange=(Button) getView().findViewById(R.id.buttonOrange);
+        buttonGreen=(Button) getView().findViewById(R.id.buttonGreen);
+        buttonBlue=(Button) getView().findViewById(R.id.buttonBlue);
+        buttonBrown=(Button) getView().findViewById(R.id.buttonBrown);
+        buttonBlack=(Button) getView().findViewById(R.id.buttonBlack);
 
+        buttonWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonYellow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonOrange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonBlue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonBrown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
+        buttonBlack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadBeltData("white");
+            }
+        });
     }
 
-    public void techniquesButtonClick() {
-        if (mListener != null) {
-            //mListener.onFragmentInteraction(uri);
-        }
-
-
+    private void loadBeltData(String beltName){
+        ((LearnActivity)getActivity()).showBelt(beltName);
     }
 
     @Override

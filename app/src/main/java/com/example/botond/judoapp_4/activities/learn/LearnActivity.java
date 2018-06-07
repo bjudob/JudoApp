@@ -49,6 +49,12 @@ public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnF
         changeFragment(beltFragment);
     }
 
+    public void showBelt(String beltName) {
+        BeltFragment beltFragment=new BeltFragment();
+
+        changeFragment(beltFragment);
+    }
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_learn;
@@ -61,6 +67,13 @@ public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnF
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
 
     }
 }
