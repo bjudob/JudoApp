@@ -3,7 +3,7 @@ package com.example.botond.judoapp_4.activities.learn;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +55,7 @@ public class BeltFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        techniquesButton=(Button) getView().findViewById(R.id.buttonTechniques);
 
-        techniquesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                techniquesButtonClick();
-            }
-        });
     }
 
     public void techniquesButtonClick() {

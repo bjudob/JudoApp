@@ -14,7 +14,7 @@ import com.example.botond.judoapp_4.activities.BaseActivity;
 import com.example.botond.judoapp_4.activities.learn.belts.BeltsActivity;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
-public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnFragmentInteractionListener{
+public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnFragmentInteractionListener,BeltFragment.OnFragmentInteractionListener{
 
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
@@ -44,9 +44,9 @@ public class LearnActivity extends BaseActivity implements LearnMenuFragment.OnF
     }
 
     public void techniquesButtonClick() {
-        Intent intent = new Intent(this, BeltsActivity.class);
+        BeltFragment beltFragment=new BeltFragment();
 
-        startActivity(intent);
+        changeFragment(beltFragment);
     }
 
     @Override
