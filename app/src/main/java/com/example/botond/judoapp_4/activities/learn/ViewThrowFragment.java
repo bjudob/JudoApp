@@ -3,7 +3,7 @@ package com.example.botond.judoapp_4.activities.learn;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +20,12 @@ import com.example.botond.judoapp_4.manager.ResourceManager;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ViewBeltFragment.OnFragmentInteractionListener} interface
+ * {@link ViewThrowFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ViewBeltFragment#newInstance} factory method to
+ * Use the {@link ViewThrowFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewBeltFragment extends Fragment {
-
-    private static final String ARG_PARAM_BELT_NAME = "paramBeltName";
+public class ViewThrowFragment extends Fragment {private static final String ARG_PARAM_BELT_NAME = "param1";
 
     private String beltName;
     private Belt belt;
@@ -35,15 +33,15 @@ public class ViewBeltFragment extends Fragment {
     private TextView textViewBeltName;
     private ListView listViewThrows;
 
-    private OnFragmentInteractionListener mListener;
+    private ViewThrowFragment.OnFragmentInteractionListener mListener;
 
-    public ViewBeltFragment() {
+    public ViewThrowFragment() {
         // Required empty public constructor
     }
 
 
-    public static ViewBeltFragment newInstance(String param1) {
-        ViewBeltFragment fragment = new ViewBeltFragment();
+    public static ViewThrowFragment newInstance(String param1) {
+        ViewThrowFragment fragment = new ViewThrowFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM_BELT_NAME, param1);
         fragment.setArguments(args);
@@ -63,6 +61,13 @@ public class ViewBeltFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_view_belt, container, false);
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
@@ -92,8 +97,8 @@ public class ViewBeltFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof ViewBeltFragment.OnFragmentInteractionListener) {
+            mListener = (ViewThrowFragment.OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -107,6 +112,7 @@ public class ViewBeltFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

@@ -49,12 +49,14 @@ public class LearnActivity extends BaseActivity implements
         fragmentCurrent=fragment;
     }
 
+    @Override
     public void techniquesButtonClick() {
         BeltFragment beltFragment=BeltFragment.newInstance();
 
         changeFragment(beltFragment);
     }
 
+    @Override
     public void showBelt(String beltName) {
         ViewBeltFragment viewBeltFragment=ViewBeltFragment.newInstance(beltName);
 
@@ -69,11 +71,6 @@ public class LearnActivity extends BaseActivity implements
     @Override
     protected int getNavigationMenuItemId() {
         return R.id.navigation_learn;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

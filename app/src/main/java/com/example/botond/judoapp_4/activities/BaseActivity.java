@@ -121,6 +121,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
     @Override
     public void onBackPressed() {
-        
+
     }
 }
