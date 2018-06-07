@@ -32,7 +32,7 @@ public class BeltFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BeltFragment newInstance(String param1, String param2) {
+    public static BeltFragment newInstance() {
         BeltFragment fragment = new BeltFragment();
 
         return fragment;

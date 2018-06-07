@@ -31,7 +31,7 @@ public class LearnActivity extends BaseActivity implements
 
         frameLayout=(FrameLayout) findViewById(R.id.mainFrame);
 
-        LearnMenuFragment menuFragment = new LearnMenuFragment();
+        LearnMenuFragment menuFragment = LearnMenuFragment.newInstance();
 
         changeFragment(menuFragment);
     }
@@ -47,7 +47,7 @@ public class LearnActivity extends BaseActivity implements
     }
 
     public void techniquesButtonClick() {
-        BeltFragment beltFragment=new BeltFragment();
+        BeltFragment beltFragment=BeltFragment.newInstance();
 
         changeFragment(beltFragment);
     }

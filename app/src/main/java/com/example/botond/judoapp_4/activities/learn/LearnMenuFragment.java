@@ -28,7 +28,7 @@ public class LearnMenuFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static LearnMenuFragment newInstance(String param1, String param2) {
+    public static LearnMenuFragment newInstance() {
         LearnMenuFragment fragment = new LearnMenuFragment();
 
         return fragment;
