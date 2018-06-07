@@ -17,7 +17,8 @@ import com.example.botond.judoapp_4.manager.ResourceManager;
 public class LearnActivity extends BaseActivity implements
         LearnMenuFragment.OnFragmentInteractionListener,
         BeltFragment.OnFragmentInteractionListener,
-        ViewBeltFragment.OnFragmentInteractionListener{
+        ViewBeltFragment.OnFragmentInteractionListener,
+        ViewThrowFragment.OnFragmentInteractionListener{
 
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
@@ -64,8 +65,8 @@ public class LearnActivity extends BaseActivity implements
     }
 
     @Override
-    public void showThrow(String beltName, String throwId) {
-        ViewThrowFragment viewThrowFragment=ViewThrowFragment.newInstance(beltName, throwId);
+    public void showThrow(String beltName, int throwIndex) {
+        ViewThrowFragment viewThrowFragment=ViewThrowFragment.newInstance(beltName, throwIndex);
 
         changeFragment(viewThrowFragment);
     }

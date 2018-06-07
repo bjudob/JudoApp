@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,10 +85,22 @@ public class ViewBeltFragment extends Fragment {
         else{
             textViewBeltName.setText(belt.getName());
 
+            List<Throw> throwList=belt.getThrowList();
+
             final ArrayAdapter adapter = new ArrayAdapter<Throw>(this.getContext(),
-                    R.layout.listview_elem, belt.getThrowList());
+                    R.layout.listview_elem, throwList);
 
             listViewThrows.setAdapter(adapter);
+
+            listViewThrows. setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+                    String beltName=belt.getName();
+
+                    mListener.showThrow(beltName, position);
+                }
+            });
         }
     }
 
@@ -107,6 +122,6 @@ public class ViewBeltFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void showThrow(String beltName, String throwId);
+        void showThrow(String beltName, int throwIndex);
     }
 }
