@@ -20,9 +20,9 @@ import com.example.botond.judoapp_4.R;
  */
 public class ViewBeltFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM_BELT_NAME = "param1";
 
-    private String mParam1;
+    private String beltName;
 
     private OnFragmentInteractionListener mListener;
 
@@ -34,7 +34,7 @@ public class ViewBeltFragment extends Fragment {
     public static ViewBeltFragment newInstance(String param1) {
         ViewBeltFragment fragment = new ViewBeltFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM_BELT_NAME, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,7 +43,7 @@ public class ViewBeltFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            beltName = getArguments().getString(ARG_PARAM_BELT_NAME);
         }
     }
 
