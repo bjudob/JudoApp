@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.botond.judoapp_4.R;
-import com.example.botond.judoapp_4.activities.learn.belts.BeltsActivity;
-import com.example.botond.judoapp_4.activities.learn.belts.ViewBeltActivity;
 
 /**
  * A simple {@link Fragment} subclass.

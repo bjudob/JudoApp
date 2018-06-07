@@ -11,7 +11,6 @@ import android.widget.FrameLayout;
 
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.activities.BaseActivity;
-import com.example.botond.judoapp_4.activities.learn.belts.BeltsActivity;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 public class LearnActivity extends BaseActivity implements
