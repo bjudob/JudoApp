@@ -3,6 +3,7 @@
     package="com.example.botond.judoapp_4">
 
     <application
+        android:name=".MyJudoApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/judogi_icon_2"
@@ -24,7 +25,6 @@
         <activity android:name=".activities.learn.LearnActivity" />
         <activity android:name=".activities.scoreboard.ScoreboardActivity" />
         <activity android:name=".activities.scoreboard.StopwatchActivity" />
-        <activity android:name=".activities.learn.notused.ViewLectureActivity" />
         <activity
             android:name=".activities.ProfileSettingsActivity"
             android:label="@string/title_activity_profile_settings"
@@ -33,9 +33,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.botond.judoapp_4.activities.profile.ProfileActivity" />
         </activity>
-        <activity android:name=".activities.learn.belts.BeltsActivity" />
-        <activity android:name=".activities.learn.belts.ViewBeltActivity" />
-        <activity android:name=".activities.learn.belts.ViewThrowActivity"></activity>
     </application>
 
 </manifest>
