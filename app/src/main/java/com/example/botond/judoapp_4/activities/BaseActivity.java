@@ -25,7 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentViewId());
+        setContentView(getContentViewId()); //this line allocates 200mb
 
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationInclude);

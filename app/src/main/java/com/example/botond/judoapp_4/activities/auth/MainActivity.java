@@ -1,5 +1,6 @@
 package com.example.botond.judoapp_4.activities.auth;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context context;
     private FirebaseAuth mAuth;
     private VideoView videoView;
 
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context=this.getApplicationContext();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(mAuth.getCurrentUser()!=null){
             finish();
-            Intent intent = new Intent(this, ProfileActivity.class);
+            Intent intent = new Intent(context, ProfileActivity.class);
             startActivity(intent);
         }
     }
@@ -99,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logInButtonClick(View view){
 
-        Intent intent = new Intent(this, LogInActivity.class);
+        Intent intent = new Intent(context, LogInActivity.class);
 
         startActivity(intent);
 
@@ -107,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUpButtonClick(View view){
 
-        Intent intent = new Intent(this, SignUpActivity.class);
+        Intent intent = new Intent(context, SignUpActivity.class);
 
         startActivity(intent);
 
@@ -115,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void facebookButtonClick(View view){
 
-        Intent intent = new Intent(this, LearnActivity.class);
+        //Intent intent = new Intent(context, LearnActivity.class);
 
-        startActivity(intent);
+        //startActivity(intent);
 
     }
 }

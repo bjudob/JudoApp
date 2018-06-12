@@ -153,7 +153,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
     @Override
     public void setBeltImage(Drawable drawable) {
-        imageViewBelt.setImageDrawable(drawable);
+        //imageViewBelt.setImageDrawable(drawable);
     }
 
     @Override

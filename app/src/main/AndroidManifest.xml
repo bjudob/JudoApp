@@ -13,17 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
         <activity android:name=".activities.auth.MainActivity">
+
+        </activity>
+        <activity android:name=".activities.auth.LogInActivity" />
+        <activity android:name=".activities.auth.SignUpActivity" />
+        <activity android:name=".activities.profile.ProfileActivity">
+
+
+        </activity>
+        <activity android:name=".activities.learn.LearnActivity" />
+        <activity android:name=".activities.scoreboard.ScoreboardActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activities.auth.LogInActivity" />
-        <activity android:name=".activities.auth.SignUpActivity" />
-        <activity android:name=".activities.profile.ProfileActivity" />
-        <activity android:name=".activities.learn.LearnActivity" />
-        <activity android:name=".activities.scoreboard.ScoreboardActivity" />
         <activity android:name=".activities.scoreboard.StopwatchActivity" />
         <activity
             android:name=".activities.ProfileSettingsActivity"

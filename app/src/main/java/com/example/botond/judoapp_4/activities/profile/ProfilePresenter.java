@@ -38,7 +38,7 @@ public class ProfilePresenter implements ProfileMVP.presenter{
         ResourceManager.init();
 
         this.view=view;
-        this.context=context;
+        this.context=context.getApplicationContext();
 
         mAuth=FirebaseAuth.getInstance();
 
