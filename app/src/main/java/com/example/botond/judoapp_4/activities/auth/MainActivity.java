@@ -14,11 +14,22 @@ import com.example.botond.judoapp_4.activities.profile.ProfileActivity;
 import com.example.botond.judoapp_4.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private VideoView videoView;
-    private Button loginButton, signupButton, facebookButton;
+
+    @BindView(R.id.buttonLoginMain)
+    Button loginButton;
+
+    @BindView(R.id.buttonSignup)
+    Button signupButton;
+
+    @BindView(R.id.buttonFacebookLogin)
+    Button facebookButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -19,11 +19,25 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SignUpActivity extends AppCompatActivity {
 
     final Context context=this;
-    EditText editTextEmail,editTextUsername,editTextPassword;
+
+    @BindView(R.id.input_email)
+    EditText editTextEmail;
+
+    @BindView(R.id.input_name)
+    EditText editTextUsername;
+
+    @BindView(R.id.input_password)
+    EditText editTextPassword;
+
+    @BindView(R.id.progressbarSignUp)
     ProgressBar progressBar;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -31,10 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        editTextEmail=findViewById(R.id.input_email);
-        editTextUsername=findViewById(R.id.input_name);
-        editTextPassword=findViewById(R.id.input_password);
-        progressBar=(ProgressBar)findViewById(R.id.progressbarSignUp);
+        ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
 

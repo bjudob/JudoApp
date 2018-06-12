@@ -18,11 +18,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LogInActivity extends AppCompatActivity {
 
     final Context context=this;
-    EditText editTextEmail,editTextPassword;
+
+    @BindView(R.id.input_email)
+    EditText editTextEmail;
+
+    @BindView(R.id.input_password)
+    EditText editTextPassword;
+
+    @BindView(R.id.progressbarLogIn)
     ProgressBar progressBar;
+
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,9 +41,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        editTextEmail=findViewById(R.id.input_email);
-        editTextPassword=findViewById(R.id.input_password);
-        progressBar=(ProgressBar)findViewById(R.id.progressbarLogIn);
+        ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
 
