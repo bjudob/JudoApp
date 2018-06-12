@@ -25,35 +25,40 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
     private static final int CHOOSE_IMAGE = 101;
 
     private ProfileMVP.presenter presenter;
 
-    private TextView textViewEmailVerified, textViewUsername;
-    private ImageView imageView, imageViewBelt;
-    private ProgressBar progressBar;
+    @BindView(R.id.textViewVerifiedEmail)
+    TextView textViewEmailVerified;
+    @BindView(R.id.textViewUsername)
+    TextView textViewUsername;
+    @BindView(R.id.imageViewProfilePic)
+    ImageView imageViewProfilePic;
+    @BindView(R.id.imageViewBelt)
+    ImageView imageViewBelt;
+    @BindView(R.id.progressbarProfileImage)
+    ProgressBar progressBar;
 
     private Uri uriProfileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         //setContentView(R.layout.activity_profile);
 
         presenter=ProfilePresenter.getInstance(this,this);
 
-        imageView=(ImageView) findViewById(R.id.imageViewProfilePic);
-        imageViewBelt=(ImageView) findViewById(R.id.imageViewBelt);
-        textViewUsername =(TextView) findViewById(R.id.textViewUsername);
-        progressBar=(ProgressBar) findViewById(R.id.progressbarProfileImage);
-        textViewEmailVerified=(TextView) findViewById(R.id.textViewVerifiedEmail);
-
         presenter.loadUserInfo();
         presenter.loadBelt();
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showImageChooser();
@@ -120,7 +125,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
             try {
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uriProfileImage);
-                imageView.setImageBitmap(bitmap);
+                imageViewProfilePic.setImageBitmap(bitmap);
 
                 presenter.uploadImageToFirebaseStorage(uriProfileImage);
 
@@ -166,7 +171,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
         Glide.get(this).setMemoryCategory(MemoryCategory.LOW);
         Glide.with(this)
                 .load(photoUrl)
-                .into(imageView);
+                .into(imageViewProfilePic);
     }
 
     @Override
