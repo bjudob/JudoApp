@@ -62,32 +62,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageViewProfilePic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_marginStart="16dp"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -100,16 +74,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/imageViewBelt"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="52dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewProfilePic"
-        app:layout_constraintStart_toStartOf="@+id/imageViewProfilePic"
-        app:layout_constraintTop_toTopOf="@+id/imageViewProfilePic" />
 
 
 </android.support.constraint.ConstraintLayout>

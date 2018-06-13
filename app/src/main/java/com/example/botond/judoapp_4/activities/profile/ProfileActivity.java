@@ -22,6 +22,7 @@ import com.example.botond.judoapp_4.activities.auth.LogInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -39,12 +40,12 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     TextView textViewEmailVerified;
     @BindView(R.id.textViewUsername)
     TextView textViewUsername;
-    @BindView(R.id.imageViewProfilePic)
+    /*@BindView(R.id.imageViewProfilePic)
     ImageView imageViewProfilePic;
     @BindView(R.id.imageViewBelt)
     ImageView imageViewBelt;
     @BindView(R.id.imageViewBackground)
-    ImageView imageViewBackground;
+    ImageView imageViewBackground;*/
     @BindView(R.id.progressbarProfileImage)
     ProgressBar progressBar;
 
@@ -64,16 +65,18 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
         presenter.loadUserInfo();
         presenter.loadBelt();
 
-        Glide.with(this)
-                .load(backgroundJudoBlur)
-                .into(imageViewBackground);
+        //Glide.with(this)
+         //       .load(backgroundJudoBlur)
+         //       .into(imageViewBackground);
 
-        imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
+
+
+        /*imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showImageChooser();
             }
-        });
+        });*/
 
         FirebaseUser user=presenter.getCurrentUser();
 
@@ -164,9 +167,10 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     @Override
     public void setBeltImage(Drawable drawable) {
         //imageViewBelt.setImageDrawable(drawable);
-        Glide.with(this)
-                .load(drawable)
-                .into(imageViewBelt);
+        //Glide.with(this)
+        //        .load(drawable)
+        //        .into(imageViewBelt);
+
     }
 
     @Override
@@ -182,9 +186,10 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     @Override
     public void loadProfilePicture(String photoUrl) {
         Glide.get(this).setMemoryCategory(MemoryCategory.LOW);
-        Glide.with(this)
+        /*Glide.with(this)
                 .load(photoUrl)
-                .into(imageViewProfilePic);
+                .into(imageViewProfilePic);*/
+
     }
 
     @Override
