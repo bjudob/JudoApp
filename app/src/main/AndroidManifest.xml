@@ -16,13 +16,15 @@
         <activity android:name=".activities.auth.LogInActivity" />
         <activity android:name=".activities.auth.SignUpActivity" />
         <activity android:name=".activities.profile.ProfileActivity"></activity>
-        <activity android:name=".activities.learn.LearnActivity" />
-        <activity android:name=".activities.scoreboard.ScoreboardActivity">
+        <activity android:name=".activities.learn.LearnActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.scoreboard.ScoreboardActivity">
+
         </activity>
         <activity android:name=".activities.scoreboard.StopwatchActivity" />
         <activity

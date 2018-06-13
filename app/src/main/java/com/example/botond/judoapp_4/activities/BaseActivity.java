@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.activities.auth.MainActivity;
 import com.example.botond.judoapp_4.activities.learn.LearnActivity;
-import com.example.botond.judoapp_4.activities.profile.ProfileActivity;
+import com.example.botond.judoapp_4.activities.profile.Profile2Activity;
 import com.example.botond.judoapp_4.activities.scoreboard.ScoreboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         navigationView.postDelayed(() -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_profile) {
-                startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this, Profile2Activity.class));
             } else if (itemId == R.id.navigation_scoreboard) {
                 startActivity(new Intent(this, ScoreboardActivity.class));
             } else if (itemId == R.id.navigation_learn) {
