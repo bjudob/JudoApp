@@ -6,9 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,7 +16,6 @@ import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
-import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.util.List;
 
@@ -27,14 +25,14 @@ public class ViewThrowFragment extends Fragment {
 
     private String beltName;
     private int throwIndex;
-
     private Belt belt;
     private List<Throw> throwList;
-    private BeltController beltController;
-    private TextView textViewThrowName;
-    private GifImageView gifImageViewThrow;
-    private ImageView imageViewThrow;
     private Throw currentThrow;
+    private BeltController beltController;
+
+    private TextView textViewThrowName, textViewNr;
+    private ImageView imageViewThrow;
+    private Button buttonPrev,buttonNext;
 
     private ViewThrowFragment.OnFragmentInteractionListener mListener;
 
@@ -73,8 +71,11 @@ public class ViewThrowFragment extends Fragment {
     public void onStart() {
         super.onStart();
         textViewThrowName=(TextView) getView().findViewById(R.id.textViewThrowName);
-        gifImageViewThrow=(GifImageView) getView().findViewById(R.id.gifImageView);
+        textViewNr=(TextView) getView().findViewById(R.id.textViewNr);
         imageViewThrow=(ImageView) getView().findViewById(R.id.imageViewThrow);
+        buttonPrev=(Button) getView().findViewById(R.id.buttonPrevious);
+        buttonNext=(Button) getView().findViewById(R.id.buttonNext);
+
 
         beltController= ResourceManager.getBeltController();
 
@@ -90,12 +91,43 @@ public class ViewThrowFragment extends Fragment {
 
             throwList=belt.getThrowList();
             currentThrow=throwList.get(throwIndex);
-            textViewThrowName.setText(currentThrow.getName());
 
-            //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-            Glide.with(this).load(currentThrow.getImageUrl()).into(imageViewThrow);
+            loadThrow();
 
+            buttonPrev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    next(-1);
+                }
+            });
+            buttonNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    next(1);
+                }
+            });
         }
+    }
+
+    private void loadThrow(){
+        textViewThrowName.setText(currentThrow.getName());
+
+        Glide.with(this).load(currentThrow.getImageUrl()).into(imageViewThrow);
+
+        String nrText=((Integer)(throwIndex+1)).toString();
+        nrText+="/";
+        nrText+=((Integer)(throwList.size())).toString();
+
+        textViewNr.setText(nrText);
+    }
+
+    private void next(int i){
+        throwIndex=(throwIndex+i)%throwList.size();
+        if (throwIndex<0) throwIndex += throwList.size();
+
+        currentThrow=throwList.get(throwIndex);
+
+        loadThrow();
     }
 
     @Override
