@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,8 +43,13 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     ImageView imageViewProfilePic;
     @BindView(R.id.imageViewBelt)
     ImageView imageViewBelt;
+    @BindView(R.id.imageViewBackground)
+    ImageView imageViewBackground;
     @BindView(R.id.progressbarProfileImage)
     ProgressBar progressBar;
+
+    @BindDrawable(R.drawable.judokas_profile_blur)
+    Drawable backgroundJudoBlur;
 
     private Uri uriProfileImage;
 
@@ -57,6 +63,10 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
         presenter.loadUserInfo();
         presenter.loadBelt();
+
+        Glide.with(this)
+                .load(backgroundJudoBlur)
+                .into(imageViewBackground);
 
         imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +135,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
 
             try {
                 Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContentResolver(),uriProfileImage);
-                imageViewProfilePic.setImageBitmap(bitmap);
+                //imageViewProfilePic.setImageBitmap(bitmap);
 
                 presenter.uploadImageToFirebaseStorage(uriProfileImage);
 
@@ -154,6 +164,9 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     @Override
     public void setBeltImage(Drawable drawable) {
         //imageViewBelt.setImageDrawable(drawable);
+        Glide.with(this)
+                .load(drawable)
+                .into(imageViewBelt);
     }
 
     @Override
