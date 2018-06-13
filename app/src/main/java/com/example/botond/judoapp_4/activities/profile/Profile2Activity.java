@@ -58,7 +58,7 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
 
     @Override
     public void setBeltImage(int img) {
-        Picasso.with(this).load(img).centerCrop().into(imageViewProfilePic);
+        Picasso.with(this).load(img).into(imageViewProfilePic);
 
     }
 
