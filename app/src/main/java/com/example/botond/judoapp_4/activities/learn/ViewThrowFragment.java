@@ -7,14 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
+import com.felipecsl.gifimageview.library.GifImageView;
 
 import java.util.List;
 
@@ -29,6 +32,9 @@ public class ViewThrowFragment extends Fragment {
     private List<Throw> throwList;
     private BeltController beltController;
     private TextView textViewThrowName;
+    private GifImageView gifImageViewThrow;
+    private ImageView imageViewThrow;
+    private Throw currentThrow;
 
     private ViewThrowFragment.OnFragmentInteractionListener mListener;
 
@@ -67,6 +73,8 @@ public class ViewThrowFragment extends Fragment {
     public void onStart() {
         super.onStart();
         textViewThrowName=(TextView) getView().findViewById(R.id.textViewThrowName);
+        gifImageViewThrow=(GifImageView) getView().findViewById(R.id.gifImageView);
+        imageViewThrow=(ImageView) getView().findViewById(R.id.imageViewThrow);
 
         beltController= ResourceManager.getBeltController();
 
@@ -81,7 +89,11 @@ public class ViewThrowFragment extends Fragment {
             textViewThrowName.setText(belt.getName());
 
             throwList=belt.getThrowList();
-            textViewThrowName.setText(throwList.get(throwIndex).getName());
+            currentThrow=throwList.get(throwIndex);
+            textViewThrowName.setText(currentThrow.getName());
+
+            //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+            Glide.with(this).load(currentThrow.getImageUrl()).into(imageViewThrow);
 
         }
     }
