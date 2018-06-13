@@ -63,6 +63,11 @@ public class ProfilePresenter implements ProfileMVP.presenter{
     }
 
     @Override
+    public void profileImageClick() {
+        view.showImageChooser();
+    }
+
+    @Override
     public void loadUserInfo(){
         if(view!=null) {
             view.setProgressBarVisibility(View.VISIBLE);

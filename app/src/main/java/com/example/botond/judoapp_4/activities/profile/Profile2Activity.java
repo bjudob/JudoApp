@@ -80,6 +80,13 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
                 });
             }
         });
+
+        imageViewProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.profileImageClick();
+            }
+        });
     }
 
     @Override
@@ -145,6 +152,16 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
     }
 
     @Override
+    public void showImageChooser(){
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(intent, "Select Profile Picture"),CHOOSE_IMAGE);
+    }
+
+
+    @Override
     public Context getContext() {
         return this.getBaseContext();
     }
@@ -172,4 +189,5 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
         textViewVerifiedEmail.setText(text);
         textViewVerifiedEmail.setVisibility(View.VISIBLE);
     }
+
 }

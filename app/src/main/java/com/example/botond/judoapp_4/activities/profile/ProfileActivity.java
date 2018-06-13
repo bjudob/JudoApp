@@ -150,7 +150,8 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
         }
     }
 
-    private void showImageChooser(){
+    @Override
+    public void showImageChooser(){
         Intent intent=new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);

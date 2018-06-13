@@ -15,6 +15,7 @@ public interface ProfileMVP {
         void loadProfilePicture(String photoUrl);
         void setUsername(String username);
         void setEmail(String text);
+        void showImageChooser();
     }
     interface presenter{
         void loadUserInfo();
@@ -23,5 +24,6 @@ public interface ProfileMVP {
         void uploadImageToFirebaseStorage(Uri uriProfileImage);
         FirebaseUser getCurrentUser();
         void reset();
+        void profileImageClick();
     }
 }
