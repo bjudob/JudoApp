@@ -38,7 +38,7 @@ public class ProfilePresenter implements ProfileMVP.presenter{
         ResourceManager.init();
 
         this.view=view;
-        this.context=context.getApplicationContext();
+        this.context=context;
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -229,12 +229,11 @@ public class ProfilePresenter implements ProfileMVP.presenter{
                 }
             }
         }
-
     }
 
     private void setBeltImage(int imgId){
         if(view!=null && context!=null){
-            view.setBeltImage(context.getDrawable(imgId));
+            view.setBeltImage(imgId);
         }
     }
 

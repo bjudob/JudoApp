@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 public interface ProfileMVP {
     interface view{
         void showToast(String text);
-        void setBeltImage(Drawable img);
+        void setBeltImage(int img);
         Context getContext();
         void setProgressBarVisibility(int visibility);
         void loadProfilePicture(String photoUrl);

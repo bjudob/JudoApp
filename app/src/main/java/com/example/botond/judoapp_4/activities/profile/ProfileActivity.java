@@ -165,7 +165,7 @@ public class ProfileActivity extends BaseActivity implements ProfileMVP.view{
     }
 
     @Override
-    public void setBeltImage(Drawable drawable) {
+    public void setBeltImage(int drawable) {
         //imageViewBelt.setImageDrawable(drawable);
         //Glide.with(this)
         //        .load(drawable)
