@@ -35,7 +35,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.botond.judoapp_4.activities.profile.ProfileActivity" />
         </activity>
-        <activity android:name=".activities.profile.Profile2Activity"></activity>
     </application>
 
 </manifest>
