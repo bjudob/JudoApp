@@ -14,7 +14,7 @@ public interface ProfileMVP {
         void setProgressBarVisibility(int visibility);
         void loadProfilePicture(String photoUrl);
         void setUsername(String username);
-        void setEmail(String username);
+        void setEmail(String text);
     }
     interface presenter{
         void loadUserInfo();
