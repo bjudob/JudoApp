@@ -22,11 +22,14 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
 
     private ProfileMVP.presenter presenter;
 
-    @BindView(R.id.textViewDisplayName)
+    @BindView(R.id.textViewUsername)
     TextView textViewDisplayName;
 
     @BindView(R.id.imageViewProfilePic)
     ImageView imageViewProfilePic;
+
+    @BindView(R.id.imageViewBelt)
+    ImageView imageViewBelt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class Profile2Activity extends BaseActivity implements ProfileMVP.view{
 
     @Override
     public void setBeltImage(int img) {
-        Picasso.with(this).load(img).into(imageViewProfilePic);
+        Picasso.with(this).load(img).into(imageViewBelt);
 
     }
 

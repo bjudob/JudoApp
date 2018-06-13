@@ -15,26 +15,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/imageViewProfilePic"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
-        app:srcCompat="@color/colorBlue" />
-
     <TextView
-        android:id="@+id/textViewDisplayName"
+        android:id="@+id/textViewUsernameStatic"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:text="Username:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewProfilePic" />
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="MyUsername"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewUsernameStatic"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsernameStatic"
+        app:layout_constraintTop_toTopOf="@+id/textViewUsernameStatic" />
+
+    <TextView
+        android:id="@+id/textViewVerifiedEmail"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/bottomNavigationInclude"
@@ -46,5 +59,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewProfilePic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
+        app:srcCompat="@drawable/judokas_profile_blur" />
+
+    <ImageView
+        android:id="@+id/imageViewCamera"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
+        app:srcCompat="@mipmap/judogi_icon_2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <ProgressBar
+        android:id="@+id/progressbarProfileImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageViewBelt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCamera"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCamera"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCamera"
+        app:srcCompat="@drawable/belt_orange" />
 
 </android.support.constraint.ConstraintLayout>
