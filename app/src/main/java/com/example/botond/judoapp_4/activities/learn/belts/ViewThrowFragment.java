@@ -154,6 +154,22 @@ public class ViewThrowFragment extends Fragment {
         switch (belt.getName()){
             case "white":
                 setBeltImage(R.drawable.belt_white);
+                break;
+            case "yellow":
+                setBeltImage(R.drawable.belt_yellow);
+                break;
+            case "orange":
+                setBeltImage(R.drawable.belt_orange);
+                break;
+            case "green":
+                setBeltImage(R.drawable.belt_green);
+                break;
+            case "blue":
+                setBeltImage(R.drawable.belt_blue);
+                break;
+            case "brown":
+                setBeltImage(R.drawable.belt_brown);
+                break;
         }
     }
 
