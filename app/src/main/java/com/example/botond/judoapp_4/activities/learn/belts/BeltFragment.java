@@ -66,7 +66,7 @@ public class BeltFragment extends Fragment {
         buttonWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadBeltData("white");
+                //loadBeltData("white");
             }
         });
         buttonYellow.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class BeltFragment extends Fragment {
         buttonBlack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadBeltData("white");
+                //loadBeltData("white");
             }
         });
     }
