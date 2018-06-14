@@ -2,6 +2,9 @@ package com.example.botond.judoapp_4.manager;
 
 import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.ctrl.LectureController;
+import com.example.botond.judoapp_4.domain.Vocabulary;
+
+import java.util.List;
 
 public class ResourceManager {
     public static BeltController beltController;
