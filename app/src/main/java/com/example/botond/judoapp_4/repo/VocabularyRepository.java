@@ -1,6 +1,7 @@
 package com.example.botond.judoapp_4.repo;
 
 import com.example.botond.judoapp_4.domain.Vocabulary;
+import com.example.botond.judoapp_4.domain.VocabularyEntry;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +31,7 @@ public class VocabularyRepository {
                     String eng = (String) ds.child("eng").getValue();
 
                     if(jpn!=null && eng!=null){
-                        vocabulary.put(jpn,eng);
+                        vocabulary.add(new VocabularyEntry(jpn,eng));
                     }
                 }
 

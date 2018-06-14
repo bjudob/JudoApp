@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.domain.Vocabulary;
+import com.example.botond.judoapp_4.domain.VocabularyEntry;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class DictionaryFragment extends Fragment {
     }
 
     private void loadDictionaryList(int i){
-        HashMap<String,String> hashMapDictionary=vocabularies.get(i).getHashMapVocabulary();
+        List<VocabularyEntry> vocabularyEntryList=vocabularies.get(i).getVocabularyEntries();
 
         List<HashMap<String,String>> listItems=new ArrayList<>();
 
@@ -95,12 +96,10 @@ public class DictionaryFragment extends Fragment {
                 new String[]{"First line","Second line"},
                 new int[]{R.id.text1,R.id.text2});
 
-        Iterator it=hashMapDictionary.entrySet().iterator();
-        while (it.hasNext()){
+        for(VocabularyEntry ve:vocabularyEntryList){
             HashMap<String,String> resultMap=new HashMap<>();
-            Map.Entry pair=(Map.Entry) it.next();
-            resultMap.put("First line", pair.getKey().toString());
-            resultMap.put("Second line", pair.getValue().toString());
+            resultMap.put("First line", ve.getJpn());
+            resultMap.put("Second line", ve.getEng());
 
             listItems.add(resultMap);
         }
