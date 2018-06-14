@@ -7,6 +7,9 @@ import android.widget.FrameLayout;
 
 import com.example.botond.judoapp_4.R;
 import com.example.botond.judoapp_4.activities.BaseActivity;
+import com.example.botond.judoapp_4.activities.learn.belts.BeltFragment;
+import com.example.botond.judoapp_4.activities.learn.belts.ViewBeltFragment;
+import com.example.botond.judoapp_4.activities.learn.belts.ViewThrowFragment;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 public class LearnActivity extends BaseActivity implements

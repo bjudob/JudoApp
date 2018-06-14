@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities.learn;
+package com.example.botond.judoapp_4.activities.learn.belts;
 
 import android.content.Context;
 import android.os.Bundle;

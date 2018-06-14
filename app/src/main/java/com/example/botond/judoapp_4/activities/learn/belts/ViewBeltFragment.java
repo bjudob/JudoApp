@@ -1,7 +1,6 @@
-package com.example.botond.judoapp_4.activities.learn;
+package com.example.botond.judoapp_4.activities.learn.belts;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
