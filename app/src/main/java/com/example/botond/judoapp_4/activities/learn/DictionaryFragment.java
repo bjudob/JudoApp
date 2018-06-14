@@ -47,12 +47,6 @@ public class DictionaryFragment extends Fragment {
 
         HashMap<String,String> hashMapDictionary=ResourceManager.getVocabularyController().getVocabularies().get(0).getHashMapVocabulary();
 
-        hashMapDictionary.put("dojo", "terem");
-        hashMapDictionary.put("sensei", "tanar");
-        hashMapDictionary.put("judogi", "judo ruha");
-        hashMapDictionary.put("tatami", "szonyeg");
-        hashMapDictionary.put("dojo", "terem");
-
         List<HashMap<String,String>> listItems=new ArrayList<>();
 
         SimpleAdapter adapter=new SimpleAdapter(
