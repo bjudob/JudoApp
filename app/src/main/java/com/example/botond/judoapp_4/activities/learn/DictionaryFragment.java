@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,6 +27,9 @@ public class DictionaryFragment extends Fragment {
 
     ListView listViewDictionary;
     Spinner spinnerDictionary;
+
+    List<Vocabulary> vocabularies;
+    List<String> vocabularyNames;
 
     public DictionaryFragment() {
         // Required empty public constructor
@@ -51,24 +55,43 @@ public class DictionaryFragment extends Fragment {
         spinnerDictionary=(Spinner) getView().findViewById(R.id.spinnerDictionary);
 
 
-        List<Vocabulary> vocabularies=ResourceManager.getVocabularyController().getVocabularies();
-        List<String> vocabularyNames=new ArrayList<>();
+        vocabularies=ResourceManager.getVocabularyController().getVocabularies();
+
+        setUpDropdown();
+        spinnerDictionary.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                loadDictionaryList(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+    }
+
+    private void setUpDropdown(){
+        vocabularyNames=new ArrayList<>();
         for (Vocabulary v:vocabularies) {
             vocabularyNames.add(v.getName());
         }
 
-        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.listview_elem, vocabularyNames);
+        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.item_dropdown, vocabularyNames);
 
         spinnerDictionary.setAdapter(dropdownAdapter);
+    }
 
-        HashMap<String,String> hashMapDictionary=vocabularies.get(0).getHashMapVocabulary();
+    private void loadDictionaryList(int i){
+        HashMap<String,String> hashMapDictionary=vocabularies.get(i).getHashMapVocabulary();
 
         List<HashMap<String,String>> listItems=new ArrayList<>();
 
         SimpleAdapter adapter=new SimpleAdapter(
                 getContext(),
                 listItems,
-                R.layout.list_item,
+                R.layout.item_list,
                 new String[]{"First line","Second line"},
                 new int[]{R.id.text1,R.id.text2});
 
@@ -83,6 +106,7 @@ public class DictionaryFragment extends Fragment {
         }
 
         listViewDictionary.setAdapter(adapter);
+
     }
 
     @Override
