@@ -6,10 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.domain.Vocabulary;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ import java.util.Map;
 public class DictionaryFragment extends Fragment {
 
     ListView listViewDictionary;
+    Spinner spinnerDictionary;
 
     public DictionaryFragment() {
         // Required empty public constructor
@@ -44,8 +48,20 @@ public class DictionaryFragment extends Fragment {
         super.onStart();
 
         listViewDictionary=(ListView)getView().findViewById(R.id.listViewDictionary);
+        spinnerDictionary=(Spinner) getView().findViewById(R.id.spinnerDictionary);
 
-        HashMap<String,String> hashMapDictionary=ResourceManager.getVocabularyController().getVocabularies().get(0).getHashMapVocabulary();
+
+        List<Vocabulary> vocabularies=ResourceManager.getVocabularyController().getVocabularies();
+        List<String> vocabularyNames=new ArrayList<>();
+        for (Vocabulary v:vocabularies) {
+            vocabularyNames.add(v.getName());
+        }
+
+        ArrayAdapter<String> dropdownAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.listview_elem, vocabularyNames);
+
+        spinnerDictionary.setAdapter(dropdownAdapter);
+
+        HashMap<String,String> hashMapDictionary=vocabularies.get(0).getHashMapVocabulary();
 
         List<HashMap<String,String>> listItems=new ArrayList<>();
 
