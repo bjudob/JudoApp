@@ -1,6 +1,7 @@
 package com.example.botond.judoapp_4.activities.learn.belts;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,8 +37,8 @@ public class ViewBeltFragment extends Fragment {
     private String beltName;
     private Belt belt;
     private BeltController beltController;
-    private TextView textViewBeltName;
     private ListView listViewThrows;
+    private ImageView imageViewBelt;
 
     private OnFragmentInteractionListener mListener;
 
@@ -70,7 +73,7 @@ public class ViewBeltFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        textViewBeltName=(TextView) getView().findViewById(R.id.textViewBeltName);
+        imageViewBelt=(ImageView) getView().findViewById(R.id.imageViewBelt);
         listViewThrows=(ListView) getView().findViewById(R.id.listViewThrows);
 
         beltController= ResourceManager.getBeltController();
@@ -82,7 +85,7 @@ public class ViewBeltFragment extends Fragment {
             // TODO: 30.05.2018
         }
         else{
-            textViewBeltName.setText(belt.getName());
+            loadBeltImage();
 
             List<Throw> throwList=belt.getThrowList();
 
@@ -101,6 +104,34 @@ public class ViewBeltFragment extends Fragment {
                 }
             });
         }
+    }
+
+    public void loadBeltImage(){
+        switch (belt.getName()){
+            case "white":
+                setBeltImage(R.drawable.belt_white);
+                break;
+            case "yellow":
+                setBeltImage(R.drawable.belt_yellow);
+                break;
+            case "orange":
+                setBeltImage(R.drawable.belt_orange);
+                break;
+            case "green":
+                setBeltImage(R.drawable.belt_green);
+                break;
+            case "blue":
+                setBeltImage(R.drawable.belt_blue);
+                break;
+            case "brown":
+                setBeltImage(R.drawable.belt_brown);
+                break;
+        }
+    }
+
+    public void setBeltImage(int img) {
+        Picasso.with(getContext()).load(img).into(imageViewBelt);
+
     }
 
     @Override
