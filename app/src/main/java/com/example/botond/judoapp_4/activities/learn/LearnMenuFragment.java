@@ -1,7 +1,6 @@
 package com.example.botond.judoapp_4.activities.learn;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ import com.example.botond.judoapp_4.R;
 public class LearnMenuFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Button techniquesButton;
+    private Button buttonTechniques, buttonDictionary;
 
     public LearnMenuFragment() {
         // Required empty public constructor
@@ -55,22 +54,32 @@ public class LearnMenuFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        techniquesButton=(Button) getView().findViewById(R.id.buttonTechniques);
+        buttonTechniques =(Button) getView().findViewById(R.id.buttonTechniques);
+        buttonDictionary =(Button) getView().findViewById(R.id.buttonDictionary);
 
-        techniquesButton.setOnClickListener(new View.OnClickListener() {
+        buttonTechniques.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                techniquesButtonClick();
+                buttonTechniquesClick();
+            }
+        });
+        buttonDictionary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonDictionaryClick();
             }
         });
     }
 
-    public void techniquesButtonClick() {
+    public void buttonTechniquesClick() {
         if (mListener != null) {
-            //mListener.onFragmentInteraction(uri);
+            mListener.buttonTechniquesClick();
         }
-        mListener.techniquesButtonClick();
-
+    }
+    public void buttonDictionaryClick() {
+        if (mListener != null) {
+            mListener.buttonDictionaryClick();
+        }
     }
 
     @Override
@@ -101,6 +110,7 @@ public class LearnMenuFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        void techniquesButtonClick();
+        void buttonTechniquesClick();
+        void buttonDictionaryClick();
     }
 }

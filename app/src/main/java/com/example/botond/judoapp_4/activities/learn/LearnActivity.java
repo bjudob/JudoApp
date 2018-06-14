@@ -51,10 +51,17 @@ public class LearnActivity extends BaseActivity implements
     }
 
     @Override
-    public void techniquesButtonClick() {
+    public void buttonTechniquesClick() {
         BeltFragment beltFragment=BeltFragment.newInstance();
 
         changeFragment(beltFragment);
+    }
+
+    @Override
+    public void buttonDictionaryClick() {
+        DictionaryFragment dictionaryFragment=DictionaryFragment.newInstance();
+
+        changeFragment(dictionaryFragment);
     }
 
     @Override
@@ -103,5 +110,10 @@ public class LearnActivity extends BaseActivity implements
             changeFragment(viewBeltFragment);
         }
 
+        if(fragmentCurrent instanceof DictionaryFragment){
+            LearnMenuFragment menuFragment = LearnMenuFragment.newInstance();
+
+            changeFragment(menuFragment);
+        }
     }
 }
