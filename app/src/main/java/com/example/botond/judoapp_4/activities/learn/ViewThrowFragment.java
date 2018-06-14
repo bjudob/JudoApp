@@ -16,6 +16,7 @@ import com.example.botond.judoapp_4.ctrl.BeltController;
 import com.example.botond.judoapp_4.domain.Belt;
 import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ViewThrowFragment extends Fragment {
     private BeltController beltController;
 
     private TextView textViewThrowName, textViewNr;
-    private ImageView imageViewThrow;
+    private ImageView imageViewThrow, imageViewBelt;
     private Button buttonPrev,buttonNext;
 
     private ViewThrowFragment.OnFragmentInteractionListener mListener;
@@ -73,6 +74,7 @@ public class ViewThrowFragment extends Fragment {
         textViewThrowName=(TextView) getView().findViewById(R.id.textViewThrowName);
         textViewNr=(TextView) getView().findViewById(R.id.textViewNr);
         imageViewThrow=(ImageView) getView().findViewById(R.id.imageViewThrow);
+        imageViewBelt=(ImageView) getView().findViewById(R.id.imageViewBelt);
         buttonPrev=(Button) getView().findViewById(R.id.buttonPrevious);
         buttonNext=(Button) getView().findViewById(R.id.buttonNext);
 
@@ -88,6 +90,7 @@ public class ViewThrowFragment extends Fragment {
         }
         else{
             textViewThrowName.setText(belt.getName());
+            loadBeltImage();
 
             throwList=belt.getThrowList();
             currentThrow=throwList.get(throwIndex);
@@ -145,6 +148,18 @@ public class ViewThrowFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void loadBeltImage(){
+        switch (belt.getName()){
+            case "white":
+                setBeltImage(R.drawable.belt_white);
+        }
+    }
+
+    public void setBeltImage(int img) {
+        Picasso.with(getContext()).load(img).into(imageViewBelt);
+
     }
 
     public interface OnFragmentInteractionListener {
