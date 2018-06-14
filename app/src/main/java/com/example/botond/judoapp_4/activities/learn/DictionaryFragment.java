@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.manager.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +35,8 @@ public class DictionaryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ResourceManager.init();
     }
 
     @Override
@@ -42,7 +45,7 @@ public class DictionaryFragment extends Fragment {
 
         listViewDictionary=(ListView)getView().findViewById(R.id.listViewDictionary);
 
-        HashMap<String,String> hashMapDictionary=new HashMap<>();
+        HashMap<String,String> hashMapDictionary=ResourceManager.getVocabularyController().getVocabularies().get(0).getHashMapVocabulary();
 
         hashMapDictionary.put("dojo", "terem");
         hashMapDictionary.put("sensei", "tanar");

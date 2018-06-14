@@ -22,4 +22,8 @@ public class Vocabulary {
     public void setName(String name) {
         this.name = name;
     }
+
+    public HashMap<String, String> getHashMapVocabulary() {
+        return hashMapVocabulary;
+    }
 }
