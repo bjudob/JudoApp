@@ -26,6 +26,8 @@ import java.util.Map;
 
 public class DictionaryFragment extends Fragment {
 
+    String JPN="jpn",ENG="eng";
+
     ListView listViewDictionary;
     Spinner spinnerDictionary;
 
@@ -93,13 +95,13 @@ public class DictionaryFragment extends Fragment {
                 getContext(),
                 listItems,
                 R.layout.item_list,
-                new String[]{"First line","Second line"},
+                new String[]{JPN,ENG},
                 new int[]{R.id.text1,R.id.text2});
 
         for(VocabularyEntry ve:vocabularyEntryList){
             HashMap<String,String> resultMap=new HashMap<>();
-            resultMap.put("First line", ve.getJpn());
-            resultMap.put("Second line", ve.getEng());
+            resultMap.put(JPN, ve.getJpn());
+            resultMap.put(ENG, ve.getEng());
 
             listItems.add(resultMap);
         }
