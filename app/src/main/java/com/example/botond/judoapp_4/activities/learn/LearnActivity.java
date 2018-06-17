@@ -23,6 +23,7 @@ public class LearnActivity extends BaseActivity implements
     private Fragment fragmentCurrent;
 
     private String lastBeltName;
+    private boolean falling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class LearnActivity extends BaseActivity implements
         fragmentTransaction.commit();
 
         fragmentCurrent=fragment;
+        falling=false;
     }
 
     @Override
@@ -72,6 +74,8 @@ public class LearnActivity extends BaseActivity implements
     @Override
     public void buttonFallingClick() {
         showThrow("falling",0);
+
+        falling=true;
     }
 
     @Override
@@ -120,9 +124,14 @@ public class LearnActivity extends BaseActivity implements
         }
 
         if(fragmentCurrent instanceof ViewThrowFragment){
-            ViewBeltFragment viewBeltFragment = ViewBeltFragment.newInstance(lastBeltName);
-
-            changeFragment(viewBeltFragment);
+            Fragment fragment;
+            if(falling) {
+                fragment = LearnMenuFragment.newInstance();
+            }
+            else{
+                fragment = ViewBeltFragment.newInstance(lastBeltName);
+            }
+            changeFragment(fragment);
         }
 
         if(fragmentCurrent instanceof DictionaryFragment){
