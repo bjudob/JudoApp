@@ -21,7 +21,7 @@ import com.example.botond.judoapp_4.R;
 public class LearnMenuFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Button buttonTechniques, buttonDictionary;
+    private Button buttonBasics, buttonTechniques, buttonDictionary, buttonFalling, buttonKata;
 
     public LearnMenuFragment() {
         // Required empty public constructor
@@ -54,32 +54,52 @@ public class LearnMenuFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        buttonBasics =(Button) getView().findViewById(R.id.buttonBasics);
         buttonTechniques =(Button) getView().findViewById(R.id.buttonTechniques);
         buttonDictionary =(Button) getView().findViewById(R.id.buttonDictionary);
+        buttonFalling =(Button) getView().findViewById(R.id.buttonFalling);
+        buttonKata =(Button) getView().findViewById(R.id.buttonKata);
 
+        buttonBasics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.buttonBasicsClick();
+                }
+            }
+        });
         buttonTechniques.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonTechniquesClick();
+                if (mListener != null) {
+                    mListener.buttonTechniquesClick();
+                }
             }
         });
         buttonDictionary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonDictionaryClick();
+                if (mListener != null) {
+                    mListener.buttonDictionaryClick();
+                }
             }
         });
-    }
-
-    public void buttonTechniquesClick() {
-        if (mListener != null) {
-            mListener.buttonTechniquesClick();
-        }
-    }
-    public void buttonDictionaryClick() {
-        if (mListener != null) {
-            mListener.buttonDictionaryClick();
-        }
+        buttonFalling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.buttonFallingClick();
+                }
+            }
+        });
+        buttonKata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.buttonKataClick();
+                }
+            }
+        });
     }
 
     @Override
@@ -110,7 +130,10 @@ public class LearnMenuFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
+        void buttonBasicsClick();
         void buttonTechniquesClick();
         void buttonDictionaryClick();
+        void buttonFallingClick();
+        void buttonKataClick();
     }
 }

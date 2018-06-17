@@ -51,6 +51,11 @@ public class LearnActivity extends BaseActivity implements
     }
 
     @Override
+    public void buttonBasicsClick() {
+
+    }
+
+    @Override
     public void buttonTechniquesClick() {
         BeltFragment beltFragment=BeltFragment.newInstance();
 
@@ -62,6 +67,16 @@ public class LearnActivity extends BaseActivity implements
         DictionaryFragment dictionaryFragment=DictionaryFragment.newInstance();
 
         changeFragment(dictionaryFragment);
+    }
+
+    @Override
+    public void buttonFallingClick() {
+
+    }
+
+    @Override
+    public void buttonKataClick() {
+
     }
 
     @Override
