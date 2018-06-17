@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Judo Ippon</string>
+    <string name="app_name">Appon Judo</string>
     <string name="log_in">Log In</string>
     <string name="sign_up">Sign Up</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>

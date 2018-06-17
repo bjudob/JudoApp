@@ -16,21 +16,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <ImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/judokas_profile_blur" />
+
     <TextView
         android:id="@+id/textViewUsername"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:text="Username"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textViewJudoka"
+        app:layout_constraintTop_toBottomOf="@+id/textViewJudoka" />
+
+    <TextView
+        android:id="@+id/textViewJudoka"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="MyUsername"
-        android:textColor="@color/colorBlack"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewVerifiedEmail"
+        android:text="JUDOKA"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewBackground" />
+        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProfilePic"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfilePic" />
 
     <TextView
         android:id="@+id/textViewVerifiedEmail"
@@ -43,30 +68,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include
-        android:id="@+id/bottomNavigationInclude"
-        layout="@layout/element_bottom_navigation"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageViewBackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="24dp"
+        android:text="Favourite technique: "
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/judokas_profile_blur" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBelt" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="YOKO GAKE"
+        android:textColor="@color/colorRed"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBelt" />
 
     <ImageView
         android:id="@+id/imageViewProfilePic"
@@ -77,20 +104,34 @@
         android:layout_margin="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarInclude"
-        app:layout_constraintVertical_bias="0.73"
+        app:layout_constraintVertical_bias="0.24000001"
         app:srcCompat="@mipmap/judogi_icon_2" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+    <ImageView
+        android:id="@+id/imageViewBelt"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewProfilePic"
+        app:layout_constraintStart_toStartOf="@+id/imageViewProfilePic"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProfilePic"
+        app:srcCompat="@drawable/belt_orange" />
+
+    <ImageView
+        android:id="@+id/imageViewIJF"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationInclude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/symbol_ijf" />
 
     <ProgressBar
         android:id="@+id/progressbarProfileImage"
@@ -102,14 +143,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewBelt"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewProfilePic"
-        app:layout_constraintStart_toStartOf="@+id/imageViewProfilePic"
-        app:layout_constraintTop_toTopOf="@+id/imageViewProfilePic"
-        app:srcCompat="@drawable/belt_orange" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <include
+        android:id="@+id/bottomNavigationInclude"
+        layout="@layout/element_bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
