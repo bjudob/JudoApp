@@ -1,4 +1,4 @@
-package com.example.botond.judoapp_4.activities.learn;
+package com.example.botond.judoapp_4.activities.learn.dictionary;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,9 +19,7 @@ import com.example.botond.judoapp_4.manager.ResourceManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 
 public class DictionaryFragment extends Fragment {
