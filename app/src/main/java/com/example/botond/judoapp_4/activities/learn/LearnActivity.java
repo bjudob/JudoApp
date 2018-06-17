@@ -71,7 +71,7 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void buttonFallingClick() {
-        showThrow("yellow",0);
+        showThrow("falling",0);
     }
 
     @Override
