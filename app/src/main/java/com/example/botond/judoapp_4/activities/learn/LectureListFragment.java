@@ -1,39 +1,30 @@
 package com.example.botond.judoapp_4.activities.learn;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.botond.judoapp_4.R;
 
-public class LessonListFragment extends Fragment {
+public class LectureListFragment extends Fragment {
     private static final String ARG_PARAM_CATEGORY = "paramLessonCategory";
     
     private String lessonCategory;
 
     private OnFragmentInteractionListener mListener;
 
-    public LessonListFragment() {
+    public LectureListFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LessonListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LessonListFragment newInstance(String param1, String param2) {
-        LessonListFragment fragment = new LessonListFragment();
+
+    public static LectureListFragment newInstance(String lessonCategoryName) {
+        LectureListFragment fragment = new LectureListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_CATEGORY, param1);
+        args.putString(ARG_PARAM_CATEGORY, lessonCategoryName);
         fragment.setArguments(args);
         return fragment;
     }

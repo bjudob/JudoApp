@@ -17,7 +17,8 @@ public class LearnActivity extends BaseActivity implements
         LearnMenuFragment.OnFragmentInteractionListener,
         BeltFragment.OnFragmentInteractionListener,
         ViewBeltFragment.OnFragmentInteractionListener,
-        ViewThrowFragment.OnFragmentInteractionListener{
+        ViewThrowFragment.OnFragmentInteractionListener,
+        LectureListFragment.OnFragmentInteractionListener{
 
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
@@ -55,7 +56,9 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void buttonBasicsClick() {
+        LectureListFragment lectureListFragment=LectureListFragment.newInstance("basics");
 
+        changeFragment(lectureListFragment);
     }
 
     @Override
@@ -140,5 +143,10 @@ public class LearnActivity extends BaseActivity implements
 
             changeFragment(menuFragment);
         }
+    }
+
+    @Override
+    public void showLecture(String id) {
+        
     }
 }
