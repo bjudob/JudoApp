@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 
 import com.example.botond.judoapp_4.domain.Lecture;
+import com.example.botond.judoapp_4.domain.LectureCategory;
+import com.example.botond.judoapp_4.domain.Vocabulary;
+import com.example.botond.judoapp_4.domain.VocabularyEntry;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
@@ -19,29 +22,32 @@ import java.util.List;
 public class LectureRepository {
 
     DatabaseReference databaseReference;
-    List<Lecture> lectures;
-    ArrayAdapter<Lecture> adapter;
+    List<LectureCategory> lectureCategories;
 
     public LectureRepository(){
-        lectures=new ArrayList<>();
+        lectureCategories=new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("lectures");
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String id = dataSnapshot.getKey();
-                String title = (String) dataSnapshot.child("title").getValue();
-                String text = (String) dataSnapshot.child("text").getValue();
-                String photo = (String) dataSnapshot.child("photo").getValue();
-                String author = (String) dataSnapshot.child("author").getValue();
 
-                Lecture l = new Lecture(id, title, text, photo, author);
+                String name = dataSnapshot.getKey();
 
-                lectures.add(l);
+                LectureCategory lectureCategory=new LectureCategory(name);
 
-                if(adapter!=null){
-                    adapter.notifyDataSetChanged();
+                for (DataSnapshot ds:dataSnapshot.getChildren()) {
+                    String id= (String) ds.getKey();
+                    String title = (String) ds.child("title").getValue();
+                    String text = (String) ds.child("text").getValue();
+                    String photo = (String) ds.child("photo").getValue();
+                    String author = (String) ds.child("author").getValue();
+
+                    lectureCategory.add(new Lecture(id, title,text,photo,author));
+
                 }
+
+                lectureCategories.add(lectureCategory);
             }
 
             @Override
@@ -58,17 +64,17 @@ public class LectureRepository {
         });
     }
 
-    public Lecture getById(String id){
-        for(Lecture l:lectures){
-            if(l.getId().equals(id)){
+    public LectureCategory getByName(String id){
+        for(LectureCategory l:lectureCategories){
+            if(l.getName().equals(id)){
                 return l;
             }
         }
         return null;
     }
 
-    public List<Lecture> getLectures(){
-        return lectures;
+    public List<LectureCategory> getLectureCategories(){
+        return lectureCategories;
     }
 
     public void addLecture(Lecture lecture){
@@ -93,11 +99,4 @@ public class LectureRepository {
         });
     }
 
-    public ArrayAdapter<Lecture> getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(ArrayAdapter<Lecture> adapter) {
-        this.adapter = adapter;
-    }
 }
