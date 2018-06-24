@@ -6,13 +6,30 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.ctrl.LectureController;
+import com.example.botond.judoapp_4.domain.Lecture;
+import com.example.botond.judoapp_4.domain.LectureCategory;
+import com.example.botond.judoapp_4.domain.Throw;
+import com.example.botond.judoapp_4.manager.ResourceManager;
+
+import java.util.List;
 
 public class LectureListFragment extends Fragment {
     private static final String ARG_PARAM_CATEGORY = "paramLessonCategory";
     
-    private String lessonCategory;
+    private String lectureCategoryName;
+    private LectureCategory lectureCategory;
+    private TextView textViewTitle;
+    private ListView listViewLectures;
+    private LectureController lectureController;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,7 +50,7 @@ public class LectureListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            lessonCategory = getArguments().getString(ARG_PARAM_CATEGORY);
+            lectureCategoryName = getArguments().getString(ARG_PARAM_CATEGORY);
         }
     }
 
@@ -42,6 +59,42 @@ public class LectureListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lesson_list, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        textViewTitle=(TextView) getView().findViewById(R.id.textViewTitle);
+        listViewLectures=(ListView) getView().findViewById(R.id.listViewLessons);
+
+        lectureController= ResourceManager.getLectureController();
+
+        lectureCategory=lectureController.getByName(lectureCategoryName);
+
+        if(lectureCategory==null){
+            //error, data not found, go back
+
+        }
+        else{
+            textViewTitle.setText(lectureCategoryName);
+
+            List<Lecture> lectures=lectureCategory.getLectures();
+
+            final ArrayAdapter adapter = new ArrayAdapter<Lecture>(this.getContext(),
+                    R.layout.listview_elem, lectures);
+
+            listViewLectures.setAdapter(adapter);
+
+            listViewLectures. setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                        long id) {
+
+                    mListener.showLecture("id");
+                }
+            });
+        }
     }
 
     @Override

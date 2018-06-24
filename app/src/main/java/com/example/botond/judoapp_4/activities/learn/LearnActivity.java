@@ -147,6 +147,6 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void showLecture(String id) {
-        
+
     }
 }
