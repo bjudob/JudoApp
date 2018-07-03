@@ -143,6 +143,12 @@ public class LearnActivity extends BaseActivity implements
 
             changeFragment(menuFragment);
         }
+
+        if(fragmentCurrent instanceof LectureListFragment){
+            LearnMenuFragment menuFragment = LearnMenuFragment.newInstance();
+
+            changeFragment(menuFragment);
+        }
     }
 
     @Override
