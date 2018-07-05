@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/scaled_background"
     tools:context=".activities.learn.LearnMenuFragment">
 
     <!-- TODO: Update blank fragment layout -->
