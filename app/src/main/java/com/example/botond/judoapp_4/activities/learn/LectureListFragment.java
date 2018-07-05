@@ -77,7 +77,7 @@ public class LectureListFragment extends Fragment {
 
         }
         else{
-            textViewTitle.setText(lectureCategoryName);
+            textViewTitle.setText(lectureCategoryName.toUpperCase());
 
             lectures=lectureCategory.getLectures();
 
@@ -91,7 +91,7 @@ public class LectureListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position,
                                         long id) {
 
-                    mListener.showLecture(lectures.get(position).getId());
+                    mListener.showLecture(lectures.get(position).getTitle());
                 }
             });
         }

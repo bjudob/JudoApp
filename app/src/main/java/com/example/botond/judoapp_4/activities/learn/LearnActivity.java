@@ -21,6 +21,7 @@ public class LearnActivity extends BaseActivity implements
         LectureListFragment.OnFragmentInteractionListener{
 
     private static final String LECTURES_BASICS = "basics";
+    private static final String LECTURES_KATA = "kata";
 
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
@@ -89,7 +90,10 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void buttonKataClick() {
+        LectureListFragment lectureListFragment=LectureListFragment.newInstance(LECTURES_KATA);
+        lastLecturesName=LECTURES_KATA;
 
+        changeFragment(lectureListFragment);
     }
 
     @Override

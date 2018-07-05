@@ -73,10 +73,10 @@ public class LectureRepository {
         return null;
     }
 
-    public Lecture getLecture(String id){
+    public Lecture getLecture(String title){
         for(LectureCategory lc:lectureCategories){
             for(Lecture l: lc.getLectures()){
-                if(l.getId().equals(id)){
+                if(l.getTitle().equals(title)){
                     return l;
                 }
             }
