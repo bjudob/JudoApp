@@ -20,12 +20,16 @@ public class LearnActivity extends BaseActivity implements
         ViewThrowFragment.OnFragmentInteractionListener,
         LectureListFragment.OnFragmentInteractionListener{
 
+    private static final String LECTURES_BASICS = "basics";
+
     //private Button basicsButton, techniquesButton, kataButton;
     private FrameLayout frameLayout;
     private Fragment fragmentCurrent;
 
     private String lastBeltName;
+    private String lastLecturesName;
     private boolean falling;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,8 @@ public class LearnActivity extends BaseActivity implements
 
     @Override
     public void buttonBasicsClick() {
-        LectureListFragment lectureListFragment=LectureListFragment.newInstance("basics");
+        LectureListFragment lectureListFragment=LectureListFragment.newInstance(LECTURES_BASICS);
+        lastLecturesName=LECTURES_BASICS;
 
         changeFragment(lectureListFragment);
     }
@@ -100,6 +105,13 @@ public class LearnActivity extends BaseActivity implements
         ViewThrowFragment viewThrowFragment=ViewThrowFragment.newInstance(beltName, throwIndex);
 
         changeFragment(viewThrowFragment);
+    }
+
+    @Override
+    public void showLecture(String id) {
+        ViewLectureFragment viewLectureFragment=ViewLectureFragment.newInstance(id);
+
+        changeFragment(viewLectureFragment);
     }
 
     @Override
@@ -149,10 +161,13 @@ public class LearnActivity extends BaseActivity implements
 
             changeFragment(menuFragment);
         }
+
+        if(fragmentCurrent instanceof ViewLectureFragment){
+            LectureListFragment lectureListFragment = LectureListFragment.newInstance(lastLecturesName);
+
+            changeFragment(lectureListFragment);
+        }
     }
 
-    @Override
-    public void showLecture(String id) {
 
-    }
 }

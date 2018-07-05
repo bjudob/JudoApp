@@ -1,18 +1,16 @@
 package com.example.botond.judoapp_4.activities.learn;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.botond.judoapp_4.R;
+import com.example.botond.judoapp_4.ctrl.LectureController;
 import com.example.botond.judoapp_4.domain.Lecture;
-import com.example.botond.judoapp_4.domain.Throw;
 import com.example.botond.judoapp_4.manager.ResourceManager;
 
 import java.util.List;
@@ -22,6 +20,12 @@ public class ViewLectureFragment extends Fragment {
 
     private String lectureId;
     private Lecture lecture;
+
+    private ImageView imageView;
+    private TextView textViewText;
+    private TextView textViewTitle;
+
+    private LectureController lectureController;
 
     public ViewLectureFragment() {
         // Required empty public constructor
@@ -53,36 +57,21 @@ public class ViewLectureFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        imageViewBelt=(ImageView) getView().findViewById(R.id.imageViewBelt);
-        listViewThrows=(ListView) getView().findViewById(R.id.listViewThrows);
+        imageView=(ImageView) getView().findViewById(R.id.imageViewImg);
+        textViewText=(TextView) getView().findViewById(R.id.textViewText);
+        textViewTitle=(TextView) getView().findViewById(R.id.textViewTitle);
 
-        beltController= ResourceManager.getBeltController();
+        lectureController= ResourceManager.getLectureController();
 
-        belt=beltController.getByName(beltName);
+        lecture=lectureController.getLecture(lectureId);
 
-        if(belt==null){
+        if(lecture==null){
             //error, data not found, go back
             // TODO: 30.05.2018
         }
         else{
-            loadBeltImage();
-
-            List<Throw> throwList=belt.getThrowList();
-
-            final ArrayAdapter adapter = new ArrayAdapter<Throw>(this.getContext(),
-                    R.layout.listview_elem, throwList);
-
-            listViewThrows.setAdapter(adapter);
-
-            listViewThrows. setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position,
-                                        long id) {
-                    String beltName=belt.getName();
-
-                    mListener.showThrow(beltName, position);
-                }
-            });
+            textViewTitle.setText(lecture.getTitle());
+            textViewText.setText(lecture.getText());
         }
     }
 

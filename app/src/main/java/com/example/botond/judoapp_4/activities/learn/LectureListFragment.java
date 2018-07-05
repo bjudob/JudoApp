@@ -29,7 +29,7 @@ public class LectureListFragment extends Fragment {
     private TextView textViewTitle;
     private ListView listViewLectures;
     private LectureController lectureController;
-
+    private List<Lecture> lectures;
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,7 +79,7 @@ public class LectureListFragment extends Fragment {
         else{
             textViewTitle.setText(lectureCategoryName);
 
-            List<Lecture> lectures=lectureCategory.getLectures();
+            lectures=lectureCategory.getLectures();
 
             final ArrayAdapter adapter = new ArrayAdapter<Lecture>(this.getContext(),
                     R.layout.listview_elem, lectures);
@@ -91,7 +91,7 @@ public class LectureListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position,
                                         long id) {
 
-                    mListener.showLecture("id");
+                    mListener.showLecture(lectures.get(position).getId());
                 }
             });
         }
