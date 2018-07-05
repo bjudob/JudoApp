@@ -90,6 +90,18 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="25sp" />
 
+                <Button
+                    android:id="@+id/buttonNeWaza"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button_bg_learn_menu"
+                    android:text="Ne Waza"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp" />
+
             </LinearLayout>
         </ScrollView>
 
