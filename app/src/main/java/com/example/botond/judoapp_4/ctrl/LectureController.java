@@ -28,4 +28,6 @@ public class LectureController {
         return repo.getLectureCategories();
     }
 
+    public Lecture getLecture(String id){return repo.getLecture(id);}
+
 }

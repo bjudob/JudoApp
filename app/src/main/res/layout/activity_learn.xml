@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <include
         android:id="@+id/bottomNavigationInclude"
         layout="@layout/element_bottom_navigation"
